@@ -55,4 +55,13 @@ class PolyTreeNode
       # nodes += node.children
     end
   end
+
+  def inspect
+    "<#{PolyTreeNode}:#{self.object_id} \n[\n#{pretty_print}\n]\n>"
+  end
+
+  def pretty_print(indent = 1)
+    spacing = " " * (indent * 2)
+    "#{spacing}#{@value}, \n#{spacing}[\n#{@children.map{|child| child.pretty_print(indent + 1)}.join}\n#{spacing}]"
+  end
 end
