@@ -34,7 +34,7 @@ class Board
   def pretty_print
     @rows.each do |row|
       row.each do |piece|
-        piece.pretty_print
+        print piece.to_s
       end
       puts
     end
