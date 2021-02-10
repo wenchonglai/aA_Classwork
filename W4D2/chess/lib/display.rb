@@ -25,6 +25,17 @@ class Display
 end
 
 if __FILE__ == $PROGRAM_NAME
-    display = Display.new(Board.new)
-    display.pretty_print
+  board = Board.new
+  # f2, f3 #f = 5
+  # e7, e5
+  # g2, g4
+  # d8, h4
+  board.move_piece([1, 5], [2, 5])
+  board.move_piece([6, 4], [4, 4])
+  board.move_piece([1, 6], [3, 6])
+  board.move_piece([7, 3], [3, 7])
+  display = Display.new(board)
+  display.pretty_print
+  p board.in_check?(0)
+  p board.checkmate?(0)
 end

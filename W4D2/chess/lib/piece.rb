@@ -3,6 +3,8 @@ require 'singleton'
 class Piece
   SYMBOL = :XX
 
+  attr_reader :color, :pos
+
   def initialize(color, board, pos)
     @color = color
     @board = board
@@ -41,14 +43,14 @@ class Piece
   end
   
   protected
-  attr_reader :color, :board, :pos
+  attr_reader :board
 end
 
 class NullPiece < Piece
   include Singleton
 
   def initialize
-    super(0, nil, nil)
+    super(-1, nil, nil)
   end
 
   def to_s

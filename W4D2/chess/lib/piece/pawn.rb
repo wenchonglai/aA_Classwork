@@ -9,9 +9,7 @@ class Pawn < Piece
   end
 
   def moves
-    (forward_steps + side_attacks).map do |pos|
-        [self.pos[0] + pos[0], self.pos[1] + pos[1]]
-    end
+    (forward_steps + side_attacks)
   end
 
   private
@@ -40,9 +38,11 @@ class Pawn < Piece
 
   def side_attacks
     [[forward_dir, 1], [forward_dir, -1]].select do |pos|
-        x, y = pos
-        piece = @board[[@pos[0] + x, @pos[1] + y]]
-        self.enemy?(piece)
+      x, y = @pos
+      temp_pos = [x + pos[0], y + pos[1]]
+      next unless @board.valid?(temp_pos)
+      piece = @board[temp_pos]
+      self.enemy?(piece)
     end
   end
 

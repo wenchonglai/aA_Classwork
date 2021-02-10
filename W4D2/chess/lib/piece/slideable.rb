@@ -1,31 +1,4 @@
 module Slideable
-  private
-  HORIZONTAL_DIRS = [[1, 0], [0, 1], [-1, 0], [0, -1]]
-
-  private
-  DIAGONAL_DIRS = [[1, 1] , [-1, 1], [-1, -1], [1, -1]]
-
-  private
-  def move_dirs
-
-  end
-
-  private
-  def grow_unblocked_moves_in_dir(dx , dy)
-    moves = []
-    x, y = @pos
-    i = 1 
-    while i < 8
-      temp_pos = [x + i * dx, y + i * dy]
-      break unless @board.valid?(temp_pos) && ( @board[temp_pos].empty? || !board[temp_pos].enemy?(self))
-      moves << temp_pos
-      break if @board[temp_pos].enemy?(self) 
-      i += 1
-    end
-
-    moves
-  end
-
   def moves
     # case direction
     # when :horizontal
@@ -49,6 +22,30 @@ module Slideable
 
   def diagonal_dirs  
     DIAGONAL_DIRS
+  end
+
+  private
+  HORIZONTAL_DIRS = [[1, 0], [0, 1], [-1, 0], [0, -1]]
+
+  DIAGONAL_DIRS = [[1, 1] , [-1, 1], [-1, -1], [1, -1]]
+
+  def move_dirs
+
+  end
+
+  def grow_unblocked_moves_in_dir(dx , dy)
+    moves = []
+    x, y = @pos
+    i = 1 
+    while i < 8
+      temp_pos = [x + i * dx, y + i * dy]
+      break unless @board.valid?(temp_pos) && ( @board[temp_pos].empty? || board[temp_pos].enemy?(self))
+      moves << temp_pos
+      break if @board[temp_pos].enemy?(self) 
+      i += 1
+    end
+
+    moves
   end
 
 end
