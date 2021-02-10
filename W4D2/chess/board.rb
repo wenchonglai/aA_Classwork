@@ -34,7 +34,7 @@ class Board
   def pretty_print
     @rows.each do |row|
       row.each do |piece|
-        piece.pretty_print
+        print piece.to_s
       end
       puts
     end
@@ -45,7 +45,7 @@ end
 
 if __FILE__ == $PROGRAM_NAME
   b = Board.new
-  b[[0, 0]] = Piece.new
+  b[[0, 0]] = Rook.new(0, b, [0,0])
   b.pretty_print
   p b
   # b.move_piece([5,5], [6,6]) #raises error
