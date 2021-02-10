@@ -6,8 +6,8 @@ class King < Piece
   SYMBOL = :♚♔
   
   private
-  def move_dirs
-    self.horizontal_dirs + self.diagonal_dirs
+  def move_diffs
+    [[1, 1], [1, 0], [1, -1], [0, 1], [0, -1], [-1, 1], [-1, 0], [-1, -1]]
   end
 
 end

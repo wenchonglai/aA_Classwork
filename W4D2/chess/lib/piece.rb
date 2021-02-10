@@ -1,6 +1,5 @@
 require 'singleton'
 
-
 class Piece
   SYMBOL = :XX
 
@@ -10,17 +9,16 @@ class Piece
     @pos = pos
   end
 
-
   def empty?
     false
   end
 
   def valid_moves
-    moves = []
+    moves
   end
 
   def pos=(val)
-    @board[@pos] = NullPiece.instance
+    # @board[@pos] = NullPiece.instance
     @board[val] = self
     @pos = val
   end
@@ -42,13 +40,21 @@ class Piece
 
   end
   
+  protected
+  attr_reader :color, :board, :pos
 end
 
 class NullPiece < Piece
   include Singleton
-  SYMBOL = :_
+
   def initialize
+    super(0, nil, nil)
   end
+
+  def to_s
+    '_ '
+  end
+
   def empty?
     true
   end

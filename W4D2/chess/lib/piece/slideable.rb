@@ -16,8 +16,8 @@ module Slideable
     x, y = @pos
     i = 1 
     while i < 8
-      temp_pos = [x + i*dx, y + i*dy]
-      break unless @board[temp_pos].empty?
+      temp_pos = [x + i * dx, y + i * dy]
+      break unless @board.valid?(temp_pos) && ( @board[temp_pos].empty? || !board[temp_pos].enemy?(self))
       moves << temp_pos
       break if @board[temp_pos].enemy?(self) 
       i += 1
@@ -26,7 +26,7 @@ module Slideable
     moves
   end
 
-  def moves(direction)
+  def moves
     # case direction
     # when :horizontal
     #   self.horizontal_dirs
@@ -36,8 +36,9 @@ module Slideable
     #   [*self.horizontal_dirs, *self.diagonal_dirs]
     # end
     arr = []
+
     move_dirs.each do |direction|
-      arr << grow_unblocked_moves_in_dir(*direction)
+      arr += grow_unblocked_moves_in_dir(*direction)
     end
     arr 
   end

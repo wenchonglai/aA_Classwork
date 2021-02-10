@@ -7,7 +7,7 @@ class Bishop < Piece
   
   private
   def move_dirs
-    self.diagonal_dirs
+    diagonal_dirs
   end
 
 end

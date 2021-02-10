@@ -7,7 +7,7 @@ class Queen < Piece
   
   private
   def move_dirs
-    self.horizontal_dirs + self.diagonal_dirs
+    horizontal_dirs + diagonal_dirs
   end
 
 end
