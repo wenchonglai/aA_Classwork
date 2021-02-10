@@ -7,7 +7,7 @@ require_relative "piece/queen.rb"
 require_relative "piece/rook.rb"
 
 class Board
-
+    attr_reader :rows
   def initialize
     @rows = Array.new(8){Array.new(8) {NullPiece.instance}}
     
@@ -56,17 +56,7 @@ class Board
     end
   end
 
-  def pretty_print
-    p '-' * 16
-    @rows.each do |row|
-      row.each do |piece|
-        print piece.to_s
-      end
-      puts
-    end
-  end
 end
-
 #♖♜♘♞♗♝♔♚♕♛♟♙ 
 
 if __FILE__ == $PROGRAM_NAME
