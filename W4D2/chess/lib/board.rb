@@ -11,12 +11,12 @@ class Board
     attr_reader :rows
   def initialize
     @rows = Array.new(8){Array.new(8) {NullPiece.instance}}
-    
-    pieces = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
+    @cache = []
+    pieces = [Rook, Knight, Bishop, Queen, King, Rook, Knight, Bishop] #change back!
 
     (0..7).each do |i|
       @rows[0][i] = pieces[i].new(0, self, [0, i])
-      @rows[1][i] = Pawn.new(0, self, [1, i])
+      @rows[5][i] = Pawn.new(0, self, [5, i])
       @rows[6][i] = Pawn.new(1, self, [6, i])
       @rows[7][i] = pieces[i].new(1, self, [7, i])
     end
@@ -37,10 +37,30 @@ class Board
     x >= 0 && y >= 0 && x < 8 && y < 8
   end
 
+  def select_piece(pos, color)
+    piece = self[pos]
+
+    if @cache.empty? 
+      raise "#{color} cannot move a null piece" if piece.is_a?(NullPiece)
+      raise "#{color} cannot move an enemy piece #{piece.color}" if piece.color != color
+    end
+    
+    @cache << pos
+    
+    if @cache.length == 2
+      c = [*@cache]
+      @cache.clear
+      self.move_piece(*c)
+      return true
+    end
+
+    false
+  end
+
   def preview(start_pos, end_pos)
     start_piece = self[start_pos]
     end_piece = self[end_pos]
-    p start_pos
+    # p "previewing moving from #{start_pos} to #{end_pos}"
     if self[end_pos].nil? #NullPiece
       self[start_pos], self[end_pos] = end_piece, start_piece
       start_piece.pos = end_pos
@@ -52,21 +72,22 @@ class Board
     return end_piece  
   end
 
-  def undo(start_pos, end_pos, end_piece)
-    # end_piece.pos = end_pos
-    self[start_pos], self[end_pos] = self[end_pos], end_piece
+  def undo(new_pos, orig_pos, end_piece)
+    # p "undoing moving from #{new_pos} to #{orig_pos}"
+    # end_piece.pos = orig_pos
+    start_piece = self[new_pos]
+    self[new_pos], self[orig_pos] = end_piece, self[new_pos]
+    start_piece.pos = orig_pos
   end
 
   def move_piece(start_pos, end_pos, valid_only=true)
     start_piece = self[start_pos]
     end_piece = self[end_pos]
-    p start_pos
-    p end_pos
-    p start_piece.class
-    raise "The starting position is empty" if start_piece.nil? 
+    # p "moving from #{start_pos} to #{end_pos}"
+    raise "#{start_piece.color} the starting position is empty" if start_piece.nil? 
     moves = valid_only ? start_piece.valid_moves : start_piece.moves
     unless moves.include?(end_pos)            
-      raise "Cannot make the move from #{start_pos} to #{end_pos}" 
+      raise "#{start_piece.color} cannot make the move from #{start_pos} to #{end_pos}" 
     end
 
     if self[end_pos].nil? #NullPiece
@@ -113,7 +134,7 @@ class Board
     return false unless self.in_check?(color)
 
     my_pieces = self.find_all(color)
-    my_pieces.all?{|piece| p piece.valid_moves ; piece.valid_moves.empty?}
+    my_pieces.all?{|piece| piece.valid_moves.empty?}
     # real checkmate:
     # 1. get all valid moves of all pieces on our side
     # 2. iterate through the valid moves

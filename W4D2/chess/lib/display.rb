@@ -3,14 +3,14 @@ require_relative "board"
 require 'colorize'
 
 class Display
-    def initialize(board)
-        @board = board
-        @cursor = Cursor.new([0, 0], board)
-    end
+  def initialize(board, cursor)
+      @board = board
+      @cursor = cursor
+  end
 
-    def pretty_print
-    p '-' * 16
+  def pretty_print
     background = true
+
     (0..7).each do |row|
       (0..7).each do |col|
         background_color = background ? :yellow : :light_yellow
@@ -34,7 +34,6 @@ if __FILE__ == $PROGRAM_NAME
   board.move_piece([6, 4], [4, 4])
   board.move_piece([1, 6], [3, 6])
   board.move_piece([7, 3], [3, 7])
-#   board.move_piece([1, 7], [3, 7])
   
   display = Display.new(board)
   display.pretty_print

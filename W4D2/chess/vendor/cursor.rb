@@ -36,13 +36,14 @@ class Cursor
 
   def initialize(cursor_pos, board)
     @cursor_pos = cursor_pos
+    @start_pos = nil
     @board = board
     @selected = false
   end
 
-  def get_input
+  def get_input(player)
     key = KEYMAP[read_char]
-    handle_key(key)
+    handle_key(key, player)
   end
 
   private
@@ -76,13 +77,16 @@ class Cursor
     return input
   end
 
-  def handle_key(key)
+  def handle_key(key, player)
+
     case key
-    when :return || :space
+    when :return, :space
+      switch_side = @board.select_piece(@cursor_pos, player.color)
       @selected ^= 1
-      return @cursor_pos
-    when :left || :right|| :up || :down
+      return switch_side
+    when :left, :right, :up, :down
       update_pos(MOVES[key])
+      return false
     when :ctrl_c 
       Process.exit(0)
     end
@@ -90,9 +94,9 @@ class Cursor
   end
 
   def update_pos(diff)
-    @pos[0] += diff[0]
-    @pos[1] += diff[1]
-    @pos[0] = [[0, @pos[0]].max , 7].min
-    @pos[1] = [[0, @pos[1]].max , 7].min
+    x, y = @cursor_pos
+    dx, dy = diff
+    
+    @cursor_pos = [x + dx, y + dy].map{|coord| [[0, coord].max, 7].min}
   end
 end

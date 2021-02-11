@@ -43,7 +43,7 @@ class Pawn < Piece
       next unless @board.valid?(temp_pos)
       piece = @board[temp_pos]
       self.enemy?(piece)
-    end
+    end.map {|pos| [pos[0] + @pos[0], pos[1] + @pos[1]]}
   end
 
 end
