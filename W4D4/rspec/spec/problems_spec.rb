@@ -13,9 +13,9 @@ describe "my_uniq" do
 end
 
 describe "two_sum" do
-  before(:each) do
-    start_arr = [-1,0,2,-2,1].two_sum
-  end
+  #before(:each) do
+    let (:start_arr) { [-1,0,2,-2,1].two_sum }
+  #end
 
   it "find all pairs of positions where elements at those positions sum to zero" do
     expect(start_arr).to eq([[0, 4], [2, 3]])
@@ -50,8 +50,8 @@ describe "stock_picker" do
     expect(stock_picker([2, 3, 1, 4, 5, 3])).to eq([2, 4])
   end
 
-  it "should correctly deal with cases in which buying or selling stocks do not make profit"
-    expect(stock_picker([5, 4, 3, 2, 1])).to eq([0, 0])
+  it "should correctly deal with cases in which buying or selling stocks do not make profit" do
+    expect(stock_picker([5, 4, 3, 2, 1])).to eq([])
   end
 end
 
