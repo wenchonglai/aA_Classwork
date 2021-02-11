@@ -91,7 +91,7 @@ class Board
     return false unless self.in_check?(color)
 
     my_pieces = self.find_all(color)
-    my_pieces.any?{|piece| !piece.moves.empty?}
+    my_pieces.all?{|piece| piece.moves.empty?}
     # real checkmate:
     # 1. get all valid moves of all pieces on our side
     # 2. iterate through the valid moves
