@@ -16,7 +16,7 @@ class Piece
   end
 
   def valid_moves
-    moves
+    moves.reject { |move| move_into_check?(move) }
   end
 
   def pos=(val)
@@ -39,7 +39,11 @@ class Piece
 
   private
   def move_into_check?(end_pos)
-
+    cache = [@pos.dup, end_pos.dup] 
+    end_piece = @board.preview(@pos, end_pos)
+    in_check = @board.in_check?(@color)
+    @board.undo(*cache.reverse, end_piece)
+    return in_check
   end
   
   protected
@@ -59,6 +63,10 @@ class NullPiece < Piece
 
   def empty?
     true
+  end
+
+  def moves
+    []
   end
 end
 

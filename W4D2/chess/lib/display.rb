@@ -34,6 +34,8 @@ if __FILE__ == $PROGRAM_NAME
   board.move_piece([6, 4], [4, 4])
   board.move_piece([1, 6], [3, 6])
   board.move_piece([7, 3], [3, 7])
+#   board.move_piece([1, 7], [3, 7])
+  
   display = Display.new(board)
   display.pretty_print
   p board.in_check?(0)

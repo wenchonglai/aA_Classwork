@@ -37,20 +37,42 @@ class Board
     x >= 0 && y >= 0 && x < 8 && y < 8
   end
 
-  def move_piece(start_pos, end_pos)
+  def preview(start_pos, end_pos)
     start_piece = self[start_pos]
     end_piece = self[end_pos]
+    p start_pos
+    if self[end_pos].nil? #NullPiece
+      self[start_pos], self[end_pos] = end_piece, start_piece
+      start_piece.pos = end_pos
+      # end_piece.pos = start_pos
+    else
+      self[end_pos], self[start_pos] = start_piece, NullPiece.instance
+      start_piece.pos = end_pos
+    end
+    return end_piece  
+  end
 
+  def undo(start_pos, end_pos, end_piece)
+    # end_piece.pos = end_pos
+    self[start_pos], self[end_pos] = self[end_pos], end_piece
+  end
+
+  def move_piece(start_pos, end_pos, valid_only=true)
+    start_piece = self[start_pos]
+    end_piece = self[end_pos]
+    p start_pos
+    p end_pos
+    p start_piece.class
     raise "The starting position is empty" if start_piece.nil? 
-
-    unless start_piece.moves.include?(end_pos)            
+    moves = valid_only ? start_piece.valid_moves : start_piece.moves
+    unless moves.include?(end_pos)            
       raise "Cannot make the move from #{start_pos} to #{end_pos}" 
     end
 
     if self[end_pos].nil? #NullPiece
       self[start_pos], self[end_pos] = end_piece, start_piece
       start_piece.pos = end_pos
-      end_piece.pos = end_pos
+      end_piece.pos = start_pos
     else
       self[end_pos], self[start_pos] = start_piece, NullPiece.instance
       start_piece.pos = end_pos
@@ -91,7 +113,7 @@ class Board
     return false unless self.in_check?(color)
 
     my_pieces = self.find_all(color)
-    my_pieces.all?{|piece| piece.moves.empty?}
+    my_pieces.all?{|piece| p piece.valid_moves ; piece.valid_moves.empty?}
     # real checkmate:
     # 1. get all valid moves of all pieces on our side
     # 2. iterate through the valid moves
