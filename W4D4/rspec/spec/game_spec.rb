@@ -61,15 +61,15 @@ describe Game do
     end
   end
 
-  describe "#valid_move?" do
-    it "should accept a smaller disk to be placed on top of a larger disk" do
+  # describe "#valid_move?" do
+  #   it "should accept a smaller disk to be placed on top of a larger disk" do
       
-    end
+  #   end
 
-    it "should raise an error if the disk being moved is larger than its destination" do
+  #   it "should raise an error if the disk being moved is larger than its destination" do
 
-    end
-  end
+  #   end
+  # end
 
   # describe "#build_disk_stack" do
   #   it "should call #valid_move"
