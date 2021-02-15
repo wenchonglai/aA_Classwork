@@ -82,22 +82,16 @@ class ResizingIntSet < IntSet
   end
 
   def insert(num)
-    resize! if @num_buckets < @count + 1
+    self.resize! if @num_buckets < @count + 1
 
-    super unless self.include?(num)
-
-    count += 1
+    unless self.include?(num)
+      super 
+      @count += 1
+    end
   end
   
   def remove(num)
-  end
-  
-  def include?(num)
-    
-  end
-  
-  def to_a
-    
+    @count -= 1 if super
   end
   
   def inspect
@@ -106,9 +100,9 @@ class ResizingIntSet < IntSet
   
   protected
   
-  def [](num)
-    # optional but useful; return the bucket corresponding to `num`
-  end
+  # def [](num)
+  #   # optional but useful; return the bucket corresponding to `num`
+  # end
   
   def num_buckets
     @num_buckets
