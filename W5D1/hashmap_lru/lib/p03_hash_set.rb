@@ -29,12 +29,12 @@ class HashSet < ResizingIntSet
   #   @store.length
   # end
 
-  def resize!
-    new_arr = []
-    @num_buckets = ?
+  # def resize!
+  #   new_arr = []
+  #   @num_buckets = ?
 
-    @store
-      .flatten(1)
-      .each {|ele| }
-  end
+  #   @store
+  #     .flatten(1)
+  #     .each {|ele| }
+  # end
 end

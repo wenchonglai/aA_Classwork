@@ -41,8 +41,10 @@ end
 
 
 class IntSet
+  @@BucketClass = Array #creating a class variable, class variable is an instance of the Array object (so, an array.) 
+
   def initialize(num_buckets = 20)
-    @store = Array.new(num_buckets) { Array.new }
+    @store = Array.new(num_buckets) { @@BucketClass.new }
   end
 
   def insert(num)
@@ -109,7 +111,8 @@ class ResizingIntSet < IntSet
   def resize!
     # debugger
     @num_buckets *= 2
-    new_arr = Array.new(@num_buckets){[]}
+    #new_arr = Array.new(@num_buckets){[]}
+    new_arr = Array.new(@num_buckets){@@BucketClass.new}
   
     @store
       .flatten(1)

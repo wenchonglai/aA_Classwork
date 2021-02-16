@@ -99,6 +99,8 @@ class LinkedList
   # def to_s
   #   inject([]) { |acc, link| acc << "[#{link.key}, #{link.val}]" }.join(", ")
   # end
+  alias_method :delete, :remove #replacing the remove method in LinkedList with the delete method in p01
+
   private
   def get_node(key)
     self.find{|node| node.key == key}
