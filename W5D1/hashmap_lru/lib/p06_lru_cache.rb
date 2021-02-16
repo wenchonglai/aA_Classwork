@@ -14,6 +14,13 @@ class LRUCache
   end
 
   def get(key)
+    if @map[key]
+      node = @map[key]
+      update_node!(node)
+      node.val
+    else
+      return calc!(key)
+    end
   end
 
   def to_s
@@ -24,12 +31,28 @@ class LRUCache
 
   def calc!(key)
     # suggested helper method; insert an (un-cached) key
+    val = @prc.call(key)
+    @store.append(key, val)
+    @map[key] = @store.last
+    eject! if @store.count > @max
+
+    return val
   end
 
   def update_node!(node)
+    val = node.val
+    key = node.key
+    @map.delete(key)
+    @store.remove(key)
+    @store.append(key, val)
+    @map[@store.last.key] = @store.last
+
     # suggested helper method; move a node to the end of the list
   end
 
   def eject!
+    key = @store.first.key
+    @map.delete(key)
+    @store.remove(key)
   end
 end

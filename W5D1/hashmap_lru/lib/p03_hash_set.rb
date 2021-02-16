@@ -1,5 +1,5 @@
-require "p01_int_set"
-require "p02_hashing"
+require_relative "p01_int_set"
+require_relative "p02_hashing"
 
 class HashSet < ResizingIntSet
   attr_reader :count

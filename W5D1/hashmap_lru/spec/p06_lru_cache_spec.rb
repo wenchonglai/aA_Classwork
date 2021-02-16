@@ -1,4 +1,5 @@
 require 'rspec'
+require 'byebug'
 require 'p06_lru_cache'
 
 describe LRUCache do

@@ -62,7 +62,10 @@ class LinkedList
   end
 
   def append(key, val)
-    new_node = Node.new(key, val)
+    self << Node.new(key, val)
+  end
+
+  def <<(new_node)
     penultimate = @tail.prev
 
     penultimate.next = new_node

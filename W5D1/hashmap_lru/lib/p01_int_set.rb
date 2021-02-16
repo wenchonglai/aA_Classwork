@@ -94,10 +94,6 @@ class ResizingIntSet < IntSet
     @count -= 1 if super
   end
   
-  def inspect
-    
-  end
-  
   protected
   
   # def [](num)
