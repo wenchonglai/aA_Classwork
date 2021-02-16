@@ -70,8 +70,6 @@ class IntSet
   end
 end
 
-require "byebug"
-
 class ResizingIntSet < IntSet
   attr_reader :count
 
