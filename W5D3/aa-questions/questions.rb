@@ -64,6 +64,9 @@ class User
     Reply.find_by_user_id(@id)
   end
 
+  def followed_questions
+    QuestionFollow.followed_questions_for_user_id(@id)
+  end
 
 end
 
@@ -90,6 +93,10 @@ class Question
         user_id = ?
     SQL
   end
+
+  def self.most_followed(n)
+    QuestionFollow.most_followed_questions(n)
+  end
   
   def initialize(options)
     @id = options['id']
@@ -111,6 +118,10 @@ class Question
 
   def replies
     Reply.find_by_question_id(@id)
+  end
+
+  def followers
+    QuestionFollow.followers_for_question_id(@id)
   end
 end
 
@@ -137,7 +148,32 @@ class QuestionFollow
         questions.id = ?
     SQL
   end
+  
+  def self.followed_questions_for_user_id(user_id)
+    instantiate(<<-SQL, user_id, Question)
+      SELECT
+        questions.*
+      FROM
+        users JOIN questions ON users.id = questions.user_id
+      WHERE
+        user_id = ?
+    SQL
+  end
 
+  def self.most_followed_questions(n)
+    instantiate(<<-SQL, n, Question)
+      SELECT
+        questions.*
+      FROM
+        question_follows JOIN questions ON questions.id = question_follows.question_id
+      GROUP BY
+        questions.id
+      ORDER BY
+        COUNT(*) DESC
+        LIMIT ?
+    SQL
+  end
+  
   def initialize(options)
     @id = options['id']
     @user_id = options['user_id']
@@ -239,7 +275,7 @@ class Reply
   end
 end
 
-class Like
+class QuestionLike
   attr_accessor :id, :user_id, :question_id
   def self.find_by_id(id)
     QuestionsDatabase.instance.execute(<<-SQL, id)
@@ -251,9 +287,24 @@ class Like
         id = ?
     SQL
   end
+
+  def self.likers_for_question_id(question_id)
+    instantiate(<<-SQL, question_id, QuestionLike)
+      SELECT
+        DISTINCT users.*
+      FROM
+        users 
+      JOIN 
+        question_likes ON users.id = question_likes.user_id
+      WHERE
+        question_likes.question_id = ?
+    SQL
+  end
+
   def initialize(options)
     @id = options['id']
     @user_id = options['user_id']
     @question_id = options['question_id']
   end
 end
+
