@@ -78,3 +78,12 @@ VALUES
     NULL,
     'Just shut up, man..'
   );
+
+INSERT INTO
+  replies(user_id, question_id, parent_id, body)
+VALUES 
+  ( (SELECT id FROM users WHERE l_name = 'Trump'), 
+    (SELECT id FROM questions WHERE title = 'Bigly?'),
+    (SELECT id FROM replies WHERE body = 'Just shut up, man..'),
+    'Tremendously Wrong!'
+  );
