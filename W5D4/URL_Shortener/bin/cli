@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+puts "Input your email:"
+email = gets.chomp
+user = User.where(email: email).first
+
+while true
+  puts "What do you want to do?\n0. Create shortened URL\n1. Visit shortened URL"
+  option = gets.chomp
+  break if option == '1' || option == '0'
+end
+
+case option
+when '0'
+  puts 'Type in your long url'
+  long_url = gets.chomp
+  url_instance = ShortenedUrl.create!(user, long_url)
+  puts "Short url is: #{ShortenedUrl.find_by(long_url: long_url).short_url}\nGoodbye!"
+
+when '1'
+  puts 'Type in the shortened URL'
+  short_url = gets.chomp
+  puts "Launching #{ShortenedUrl.find_by(short_url: short_url).long_url.to_s}...\nGoodbye!"
+end
+
+#qKKqGQbQbq67CxBWO9jmeQ
+
