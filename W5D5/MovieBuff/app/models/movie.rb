@@ -1,3 +1,10 @@
+# Table name: movies
+#  id          :integer      not null, primary key
+#  title       :string
+#  yr          :integer
+#  score       :float
+#  votes       :integer
+#  director_id :integer
 class Movie < ApplicationRecord
   belongs_to :director,
     class_name: :Actor,

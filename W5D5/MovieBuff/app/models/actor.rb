@@ -1,3 +1,6 @@
+# Table name: actors
+#  id          :integer      not null, primary key
+#  name        :string
 class Actor < ApplicationRecord
   has_many :castings,
     class_name: :Casting,
