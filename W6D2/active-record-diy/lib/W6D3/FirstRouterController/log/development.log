@@ -1,0 +1,4 @@
+  [1m[35m (164.8ms)[0m  [1m[35mCREATE DATABASE "FirstRouterController_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (70.8ms)[0m  [1m[35mCREATE DATABASE "FirstRouterController_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
