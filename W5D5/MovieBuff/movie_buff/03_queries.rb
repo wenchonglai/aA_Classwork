@@ -15,7 +15,7 @@ def golden_age
     .group("decade")
     .order("avg(score) desc")
     .limit(1)
-    .pluck("floor(yr / 10) * 10 as decade")[0]
+    .pluck("yr / 10 * 10 as decade")[0]
     .to_i
 end
 
