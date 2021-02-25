@@ -1,0 +1,34 @@
+/* PHASE 4: Footer */
+.footer {
+  background-color: #222;
+  width: 900px;
+  height: 40px;
+  margin: auto;
+  position: sticky;
+  bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  border: 1px solid #555;
+  border-top: none;
+  padding: 0 24px;
+  color: #888;
+  font-weight: 400;
+}
+
+.footer > * {
+  display: inline;
+  line-height: 40px;
+  vertical-align: center;
+}
+.footer .list-of-links{
+  display: flex;
+}
+
+.footer .list-of-links a {
+  padding: 0 12px;
+}
+
+.footer .list-of-links a:hover {
+  color: orange;
+}

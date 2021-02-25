@@ -1,0 +1,29 @@
+/* PHASE 3: Layout */
+
+.content {
+  width: 900px;
+  display: flex;
+  background: #000;
+  margin: auto;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border: 1px solid #555;
+  border-top: none;
+  color: white;
+}
+
+.content > * {
+  padding: 12px 24px;
+}
+.content-sidebar {
+  flex: 1 1 0;
+  background: #000;
+  border-right: 1px solid #555;
+  min-height: 400px;
+}
+
+.content-main {
+  flex: 2 1 0;
+  background: #000;
+  min-height: 400px;
+}
