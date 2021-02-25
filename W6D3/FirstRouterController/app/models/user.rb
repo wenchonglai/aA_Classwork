@@ -19,7 +19,12 @@ class User < ApplicationRecord
     class_name: :ArtworkShare
 
   has_many :shared_artworks,
-    through: :artwork_share,
+    through: :artwork_shares,
     source: :artwork
+
+  has_many :comments,
+    foreign_key: :author_id,
+    class_name: :Comment,
+    dependent: :destroy
 
 end

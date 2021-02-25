@@ -1,13 +1,13 @@
 class ArtworksController < ApplicationController
-  def index
-    render json: Artwork.all
-  end
+  # def index
+  #   render json: Artwork.all
+  # end
 
-  def artist_index
+  def index
     user = User.find_by(id: params[:id])
 
     if user
-      render json:user.artworks
+      render json: {owned: user.artworks, shared: user.shared_artworks}
     else
       redirect_to "/users/#{params[:id]}"
     end

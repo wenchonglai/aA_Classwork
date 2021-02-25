@@ -9,9 +9,12 @@ Rails.application.routes.draw do
   patch '/users/:id', to: 'users#update'
   delete '/users/:id', to: 'users#destroy'
 
-  get 'users/:id/artworks', to: 'artworks#artist_index'
+  get '/users/:id/artworks', to: 'artworks#index'
+  resources :artworks, except: [:index]
 
-  resources :artworks
-
+  delete '/artwork_shares', to: 'artwork_shares#delete_by_strong_params'
   resources :artwork_shares, only: [:create, :destroy]
+
+  delete '/comments', to: 'comments#destroy_by_strong_params'
+  resources :comments, only: [:create, :destroy, :index]
 end
