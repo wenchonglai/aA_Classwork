@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(strong_params)
+    user = User.new(user_params)
 
     if user.save
       render json: user
@@ -26,9 +26,8 @@ class UsersController < ApplicationController
   def update
     user = User.find_by(id: params[:id])
     
-
     if user
-      user.update(strong_params)
+      user.update(user_params)
       render json: user
     else
       redirect_to "/users/#{params[:id]}"
@@ -47,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   private 
-  def strong_params
-    params.require(:user).permit(:name, :email)
+  def user_params
+    params.require(:user).permit(:username)
   end
 end

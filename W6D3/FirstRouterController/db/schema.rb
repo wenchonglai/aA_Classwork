@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2021_02_24_233456) do
     t.integer "viewer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["artwork_id", "viewer_id"], name: "index_artwork_shares_on_artwork_id_and_viewer_id", unique: true
     t.index ["artwork_id"], name: "index_artwork_shares_on_artwork_id"
     t.index ["viewer_id"], name: "index_artwork_shares_on_viewer_id"
   end
@@ -32,12 +33,14 @@ ActiveRecord::Schema.define(version: 2021_02_24_233456) do
     t.datetime "updated_at", null: false
     t.index ["artist_id", "title"], name: "index_artworks_on_artist_id_and_title", unique: true
     t.index ["artist_id"], name: "index_artworks_on_artist_id"
+    t.index ["title"], name: "index_artworks_on_title", unique: true
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end

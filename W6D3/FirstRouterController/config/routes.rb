@@ -8,4 +8,10 @@ Rails.application.routes.draw do
   post '/users', to: 'users#create'
   patch '/users/:id', to: 'users#update'
   delete '/users/:id', to: 'users#destroy'
+
+  get 'users/:id/artworks', to: 'artworks#artist_index'
+
+  resources :artworks
+
+  resources :artwork_shares, only: [:create, :destroy]
 end
