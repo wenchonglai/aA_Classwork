@@ -30,4 +30,7 @@ class Artwork < ApplicationRecord
     foreign_key: :artwork_id,
     class_name: :Artwork,
     dependent: :destroy
+
+  has_many :likes,
+    as: :likee 
 end

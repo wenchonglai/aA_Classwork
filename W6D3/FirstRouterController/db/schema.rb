@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 2021_02_26_010312) do
     t.index ["author_id"], name: "index_comments_on_author_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.string "likee_type"
+    t.bigint "likee_id"
+    t.integer "liker_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["likee_id", "liker_id", "likee_type"], name: "index_likes_on_likee_id_and_liker_id_and_likee_type", unique: true
+    t.index ["likee_type", "likee_id"], name: "index_likes_on_likee_type_and_likee_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.datetime "created_at", null: false
