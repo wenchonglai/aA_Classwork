@@ -1,0 +1,1240 @@
+  [1m[35m (104.0ms)[0m  [1m[35mCREATE DATABASE "Cats99_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (128.0ms)[0m  [1m[35mCREATE DATABASE "Cats99_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6613552763082678525)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateCats (20210226214039)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "cats" ("id" bigserial primary key, "birth_date" date NOT NULL, "color" character varying NOT NULL, "name" character varying NOT NULL, "sex" character varying(1) NOT NULL, "description" text DEFAULT '', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20210226214039_create_cats.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210226214039"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-26 21:44:51.065217"], ["updated_at", "2021-02-26 21:44:51.065217"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(6613552763082678525)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/zsyzyork/.rbenv/versions/2.5.1/bin/annotate:23
+Started GET "/cats" for ::1 at 2021-02-26 14:08:11 -0800
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/zsyzyork/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.5/lib/active_record/log_subscriber.rb:98
+
+ActionController::RoutingError - undefined method `default_protect_from_forgery=' for nil:NilClass:
+
+Started POST "/__better_errors/729adf0068678304/variables" for ::1 at 2021-02-26 14:08:11 -0800
+Started GET "/cats" for ::1 at 2021-02-26 14:09:32 -0800
+
+SyntaxError - syntax error, unexpected end-of-input, expecting keyword_end:
+  app/controllers/cats_controller.rb:21:in `'
+
+Started POST "/__better_errors/4cd07c772b0cf3ac/variables" for ::1 at 2021-02-26 14:09:32 -0800
+Started GET "/cats" for ::1 at 2021-02-26 14:09:46 -0800
+
+ActionController::RoutingError - undefined method `default_protect_from_forgery=' for nil:NilClass:
+
+Started POST "/__better_errors/8738902b03cd3128/variables" for ::1 at 2021-02-26 14:09:46 -0800
+Started GET "/cats" for ::1 at 2021-02-26 14:10:09 -0800
+
+ActionController::RoutingError - undefined method `default_protect_from_forgery=' for nil:NilClass:
+
+Started GET "/cats" for ::1 at 2021-02-26 14:10:55 -0800
+Processing by CatsController#index as */*
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (4.1ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/index.html.erb within layouts/application (10.2ms)
+Completed 200 OK in 1088ms (Views: 1071.2ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/cats" for ::1 at 2021-02-26 14:11:10 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.4ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 19ms (Views: 17.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:11:19 -0800
+Processing by CatsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.7ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.9ms)
+
+
+
+NoMethodError - undefined method `errors' for nil:NilClass:
+  app/controllers/cats_controller.rb:14:in `show'
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:11:58 -0800
+Processing by CatsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 6.6ms)
+
+
+
+NoMethodError - undefined method `errors' for nil:NilClass:
+  app/controllers/cats_controller.rb:14:in `show'
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:12:03 -0800
+Processing by CatsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.3ms)
+
+
+
+NoMethodError - undefined method `errors' for nil:NilClass:
+  app/controllers/cats_controller.rb:14:in `show'
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:12:25 -0800
+Processing by CatsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+Completed 500 Internal Server Error in 125890ms (ActiveRecord: 2.7ms)
+
+
+
+NoMethodError - undefined method `errors' for nil:NilClass:
+  app/controllers/cats_controller.rb:15:in `show'
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:14:33 -0800
+Processing by CatsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.4ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+Redirected to http://localhost:3000/cats
+Completed 302 Found in 13ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/cats" for ::1 at 2021-02-26 14:14:34 -0800
+Processing by CatsController#index as */*
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (2.5ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 92ms (Views: 88.8ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:14:46 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+Redirected to http://localhost:3000/cats
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/cats" for ::1 at 2021-02-26 14:14:46 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.4ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 16ms (Views: 14.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/cats/92384928" for ::1 at 2021-02-26 14:14:52 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"92384928"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 92384928], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+Redirected to http://localhost:3000/cats
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/cats" for ::1 at 2021-02-26 14:14:52 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 36ms (Views: 34.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:16:10 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.9ms)
+
+
+
+ActionView::MissingTemplate - Missing template cats/show, application/show with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views":
+  app/controllers/cats_controller.rb:12:in `show'
+
+Started POST "/__better_errors/73dcf0c040db5c37/variables" for ::1 at 2021-02-26 14:16:10 -0800
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started GET "/cats" for ::1 at 2021-02-26 14:18:08 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 15ms (Views: 14.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:18:12 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.2ms)
+
+
+
+ActionView::MissingTemplate - Missing template cats/show, application/show with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views":
+  app/controllers/cats_controller.rb:12:in `show'
+
+Started POST "/__better_errors/206760f0cca5441d/variables" for ::1 at 2021-02-26 14:18:13 -0800
+Started GET "/cats/1" for ::1 at 2021-02-26 14:19:13 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (5.6ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.2ms)
+
+
+
+NoMethodError - undefined method `birth_date' for nil:NilClass:
+  app/views/cats/show.html.erb:3:in `_app_views_cats_show_html_erb__2774700646022189204_70134945393920'
+  app/controllers/cats_controller.rb:12:in `show'
+
+Started POST "/__better_errors/1adabe9f07a45a1c/variables" for ::1 at 2021-02-26 14:19:13 -0800
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started GET "/cats" for ::1 at 2021-02-26 14:35:27 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.9ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/index.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 25ms (Views: 16.4ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:35:29 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (5.4ms)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.5ms)
+
+
+
+NoMethodError - undefined method `birth_date' for nil:NilClass:
+  app/views/cats/show.html.erb:3:in `_app_views_cats_show_html_erb__2774700646022189204_70134949611480'
+  app/controllers/cats_controller.rb:12:in `show'
+
+Started POST "/__better_errors/8b6a0e624a7b7d96/variables" for ::1 at 2021-02-26 14:35:30 -0800
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mCat Create (2.1ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["birth_date", "1980-01-01"], ["color", "brown"], ["name", "Jug"], ["sex", "M"], ["description", "random cat"], ["created_at", "2021-02-26 22:36:58.452894"], ["updated_at", "2021-02-26 22:36:58.452894"]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCat Create (0.3ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["birth_date", "1880-01-01"], ["color", "grey"], ["name", "Mug"], ["sex", "F"], ["description", "random cat 2"], ["created_at", "2021-02-26 22:36:58.457397"], ["updated_at", "2021-02-26 22:36:58.457397"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+Started GET "/cats" for ::1 at 2021-02-26 14:37:09 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.7ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/index.html.erb within layouts/application (25.0ms)
+Completed 200 OK in 41ms (Views: 35.0ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:37:15 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 16ms (Views: 15.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cats/2" for ::1 at 2021-02-26 14:37:19 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCat Load (0.4ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 16ms (Views: 14.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/cats/3" for ::1 at 2021-02-26 14:37:24 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (5.3ms)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.3ms)
+
+
+
+NoMethodError - undefined method `birth_date' for nil:NilClass:
+  app/views/cats/show.html.erb:3:in `_app_views_cats_show_html_erb__2774700646022189204_70135763084300'
+  app/controllers/cats_controller.rb:12:in `show'
+
+Started POST "/__better_errors/2612c6c0b405f900/variables" for ::1 at 2021-02-26 14:37:24 -0800
+Started GET "/cats/3" for ::1 at 2021-02-26 14:37:51 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+Redirected to http://localhost:3000/cats
+Completed 302 Found in 6ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/cats" for ::1 at 2021-02-26 14:37:51 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (1.3ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/index.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 39ms (Views: 32.6ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/cats/3" for ::1 at 2021-02-26 14:37:54 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+Redirected to http://localhost:3000/cats
+Completed 302 Found in 6ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/cats" for ::1 at 2021-02-26 14:37:54 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 27ms (Views: 23.2ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/cats/3" for ::1 at 2021-02-26 14:38:43 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering text template
+  Rendered text template (0.0ms)
+Completed 200 OK in 9ms (Views: 2.0ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:40:36 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (6.8ms)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 3.8ms)
+
+
+
+ActionView::MissingTemplate - Missing partial partials/_cat with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views":
+  app/views/cats/show.html.erb:1:in `_app_views_cats_show_html_erb__2774700646022189204_70135757178220'
+  app/controllers/cats_controller.rb:12:in `show'
+
+Started POST "/__better_errors/4c8d66d8f2aba3b5/variables" for ::1 at 2021-02-26 14:40:36 -0800
+Started GET "/cats" for ::1 at 2021-02-26 14:40:53 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/index.html.erb within layouts/application (8.0ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.3ms)
+
+
+
+ActionView::MissingTemplate - Missing partial partials/_cat with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views":
+  app/views/cats/index.html.erb:5:in `block in _app_views_cats_index_html_erb__7641132492750658_70135762151460'
+  app/views/cats/index.html.erb:3:in `_app_views_cats_index_html_erb__7641132492750658_70135762151460'
+  app/controllers/cats_controller.rb:5:in `index'
+
+Started POST "/__better_errors/689200e498202a03/variables" for ::1 at 2021-02-26 14:40:53 -0800
+Started GET "/cats" for ::1 at 2021-02-26 14:41:16 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.4ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/index.html.erb within layouts/application (7.7ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.4ms)
+
+
+
+ActionView::MissingTemplate - Missing partial ./partials/_cat with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views":
+  app/views/cats/index.html.erb:5:in `block in _app_views_cats_index_html_erb__7641132492750658_70135753333160'
+  app/views/cats/index.html.erb:3:in `_app_views_cats_index_html_erb__7641132492750658_70135753333160'
+  app/controllers/cats_controller.rb:5:in `index'
+
+Started POST "/__better_errors/1c2575985585150f/variables" for ::1 at 2021-02-26 14:41:16 -0800
+Started GET "/cats" for ::1 at 2021-02-26 14:41:45 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/index.html.erb within layouts/application (9.6ms)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.3ms)
+
+
+
+ActionView::MissingTemplate - Missing partial partials/_cat with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views":
+  app/views/cats/index.html.erb:5:in `block in _app_views_cats_index_html_erb__7641132492750658_70135757088440'
+  app/views/cats/index.html.erb:3:in `_app_views_cats_index_html_erb__7641132492750658_70135757088440'
+  app/controllers/cats_controller.rb:5:in `index'
+
+Started POST "/__better_errors/bcab23cd76d913bf/variables" for ::1 at 2021-02-26 14:41:45 -0800
+Started GET "/cats" for ::1 at 2021-02-26 14:42:39 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/_cat.html.erb (0.5ms)
+  Rendered cats/_cat.html.erb (0.1ms)
+  Rendered cats/index.html.erb within layouts/application (8.4ms)
+Completed 200 OK in 23ms (Views: 22.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:42:44 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (7.0ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.2ms)
+
+
+
+ActionView::MissingTemplate - Missing partial partials/_cat with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views":
+  app/views/cats/show.html.erb:1:in `_app_views_cats_show_html_erb__2774700646022189204_70135217235000'
+  app/controllers/cats_controller.rb:12:in `show'
+
+Started POST "/__better_errors/8fa7e8775396365f/variables" for ::1 at 2021-02-26 14:42:44 -0800
+Started GET "/cats/1" for ::1 at 2021-02-26 14:42:56 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/_cat.html.erb (304.4ms)
+  Rendered cats/show.html.erb within layouts/application (309.0ms)
+Completed 500 Internal Server Error in 320ms (ActiveRecord: 0.2ms)
+
+
+
+NameError - undefined local variable or method `cat' for #<#<Class:0x00007f92f2036290>:0x00007f93417d6820>
+Did you mean?  @cat:
+  app/views/cats/_cat.html.erb:3:in `_app_views_cats__cat_html_erb__2543599062238676105_70135217807660'
+  app/views/cats/show.html.erb:1:in `_app_views_cats_show_html_erb__2774700646022189204_70135217826420'
+  app/controllers/cats_controller.rb:12:in `show'
+
+Started POST "/__better_errors/d2a32d9eca2a3bea/variables" for ::1 at 2021-02-26 14:42:57 -0800
+Started GET "/cats/1" for ::1 at 2021-02-26 14:43:04 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/show.html.erb within layouts/application (0.8ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.3ms)
+
+
+
+SyntaxError - syntax error, unexpected tIDENTIFIER, expecting ')'
+...uffer.append=( render 'cat' cat: @cat);
+...                            ^~~:
+  app/views/cats/show.html.erb:1:in `'
+  app/controllers/cats_controller.rb:12:in `show'
+
+Started POST "/__better_errors/03b375b7ab8b7f1f/variables" for ::1 at 2021-02-26 14:43:04 -0800
+Started GET "/cats/1" for ::1 at 2021-02-26 14:43:07 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/_cat.html.erb (0.5ms)
+  Rendered cats/show.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 23ms (Views: 21.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:46:14 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/_cat.html.erb (0.5ms)
+  Rendered cats/show.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 21ms (Views: 20.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:46:26 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/_cat.html.erb (0.5ms)
+  Rendered cats/show.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 19ms (Views: 18.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/cats" for ::1 at 2021-02-26 14:46:32 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/_cat.html.erb (0.5ms)
+  Rendered cats/_cat.html.erb (0.1ms)
+  Rendered cats/index.html.erb within layouts/application (8.3ms)
+Completed 200 OK in 23ms (Views: 22.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-02-26 14:46:48 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/_cat.html.erb (0.4ms)
+  Rendered cats/show.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 18ms (Views: 17.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/cats/2" for ::1 at 2021-02-26 14:46:58 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/_cat.html.erb (0.4ms)
+  Rendered cats/show.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 18ms (Views: 17.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 14:58:56 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 35ms (Views: 15.8ms | ActiveRecord: 9.8ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 14:59:54 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 20ms (Views: 19.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:00:07 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 15ms (Views: 14.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:00:37 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 15ms (Views: 15.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:00:57 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 21ms (Views: 20.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:01:05 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 26ms (Views: 25.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:02:41 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (10.5ms)
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 5.2ms)
+
+
+
+NameError - uninitialized constant ActionView::CompiledTemplates::COLORS:
+  app/views/cats/new.html.erb:25:in `_app_views_cats_new_html_erb__1699667607863294348_70135754003940'
+  app/controllers/cats_controller.rb:21:in `new'
+
+Started POST "/__better_errors/7bf4e2fdbde0e95c/variables" for ::1 at 2021-02-26 15:02:42 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:04:21 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 19ms (Views: 16.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:07:50 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 15ms (Views: 14.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:11:12 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.8ms)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected keyword_do
+'.freeze;       Cat::COLORS do |color| 
+                            ^~
+/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views/cats/new.html.erb:45: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+          ^~~~~~:
+  app/views/cats/new.html.erb:24:in `'
+  app/controllers/cats_controller.rb:21:in `new'
+
+Started POST "/__better_errors/77da7279a1e8d932/variables" for ::1 at 2021-02-26 15:11:12 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:11:36 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.8ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected keyword_do
+'.freeze;       Cat::COLORS do |color| 
+                            ^~
+/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views/cats/new.html.erb:45: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+          ^~~~~~:
+  app/views/cats/new.html.erb:24:in `'
+  app/controllers/cats_controller.rb:22:in `new'
+
+Started POST "/__better_errors/05c151a485872e9b/variables" for ::1 at 2021-02-26 15:11:37 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:11:41 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected keyword_do
+'.freeze;       @Cat::COLORS do |color| 
+                             ^~
+/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views/cats/new.html.erb:45: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+          ^~~~~~:
+  app/views/cats/new.html.erb:24:in `'
+  app/controllers/cats_controller.rb:22:in `new'
+
+Started POST "/__better_errors/b95a31be5d3e7a8a/variables" for ::1 at 2021-02-26 15:11:41 -0800
+Started POST "/__better_errors/b95a31be5d3e7a8a/variables" for ::1 at 2021-02-26 15:12:26 -0800
+Started POST "/__better_errors/b95a31be5d3e7a8a/eval" for ::1 at 2021-02-26 15:12:34 -0800
+Started POST "/__better_errors/b95a31be5d3e7a8a/eval" for ::1 at 2021-02-26 15:12:39 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:13:05 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected keyword_do, expecting keyword_end
+'.freeze;       @colors do |color| 
+                        ^~
+/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views/cats/new.html.erb:45: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+          ^~~~~~:
+  app/views/cats/new.html.erb:24:in `'
+  app/controllers/cats_controller.rb:22:in `new'
+
+Started POST "/__better_errors/fb6913379388ba24/variables" for ::1 at 2021-02-26 15:13:05 -0800
+Started POST "/__better_errors/fb6913379388ba24/variables" for ::1 at 2021-02-26 15:13:11 -0800
+Started POST "/__better_errors/fb6913379388ba24/eval" for ::1 at 2021-02-26 15:13:18 -0800
+Started POST "/__better_errors/fb6913379388ba24/eval" for ::1 at 2021-02-26 15:13:22 -0800
+Started POST "/__better_errors/fb6913379388ba24/eval" for ::1 at 2021-02-26 15:13:36 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:13:59 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected keyword_do, expecting keyword_end
+'.freeze;       @colors do |color| 
+                        ^~
+/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views/cats/new.html.erb:45: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+          ^~~~~~:
+  app/views/cats/new.html.erb:24:in `'
+  app/controllers/cats_controller.rb:22:in `new'
+
+Started POST "/__better_errors/daaf03b53d2bc9af/variables" for ::1 at 2021-02-26 15:13:59 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:14:37 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected keyword_do
+'.freeze;       Cat::COLORS do |color| 
+                            ^~
+/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views/cats/new.html.erb:45: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+          ^~~~~~:
+  app/views/cats/new.html.erb:24:in `'
+  app/controllers/cats_controller.rb:22:in `new'
+
+Started POST "/__better_errors/e86017c6d82e01d4/variables" for ::1 at 2021-02-26 15:14:37 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:14:56 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (6.9ms)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.0ms)
+
+
+
+NameError - uninitialized constant ActionView::CompiledTemplates::COLORS:
+  app/views/cats/new.html.erb:24:in `_app_views_cats_new_html_erb__1699667607863294348_70134945392940'
+  app/controllers/cats_controller.rb:22:in `new'
+
+Started POST "/__better_errors/7ccbf711760cc870/variables" for ::1 at 2021-02-26 15:14:56 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:15:11 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (318.7ms)
+Completed 500 Internal Server Error in 329ms (ActiveRecord: 0.0ms)
+
+
+
+NameError - undefined local variable or method `colors' for #<#<Class:0x00007f93514f1118>:0x00007f9381530ae0>
+Did you mean?  @colors:
+  app/views/cats/new.html.erb:24:in `_app_views_cats_new_html_erb__1699667607863294348_70135753295200'
+  app/controllers/cats_controller.rb:22:in `new'
+
+Started POST "/__better_errors/8ecee92cfea82208/variables" for ::1 at 2021-02-26 15:15:11 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:15:34 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected keyword_do, expecting keyword_end
+'.freeze;       @colors do |color| 
+                        ^~
+/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views/cats/new.html.erb:45: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+          ^~~~~~:
+  app/views/cats/new.html.erb:24:in `'
+  app/controllers/cats_controller.rb:22:in `new'
+
+Started POST "/__better_errors/61e8a0f1bd7b4a6a/variables" for ::1 at 2021-02-26 15:15:34 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:16:12 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected keyword_do, expecting keyword_end
+'.freeze;       @colors do |color| 
+                        ^~
+/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views/cats/new.html.erb:45: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+          ^~~~~~:
+  app/views/cats/new.html.erb:24:in `'
+  app/controllers/cats_controller.rb:22:in `new'
+
+Started POST "/__better_errors/dc5513ecf63735a4/variables" for ::1 at 2021-02-26 15:16:12 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:16:16 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+
+
+SyntaxError - syntax error, unexpected keyword_do, expecting keyword_end
+'.freeze;       @colors do |color| 
+                        ^~
+/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views/cats/new.html.erb:45: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+          ^~~~~~:
+  app/views/cats/new.html.erb:24:in `'
+  app/controllers/cats_controller.rb:22:in `new'
+
+Started POST "/__better_errors/6a456ccb88bb64fe/variables" for ::1 at 2021-02-26 15:16:16 -0800
+Started POST "/__better_errors/6a456ccb88bb64fe/variables" for ::1 at 2021-02-26 15:16:18 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:16:33 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 17ms (Views: 14.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:16:38 -0800
+Processing by CatsController#new as HTML
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.0ms)
+
+
+
+NoMethodError - undefined method `all_colors' for #<Class:0x00007f93417b4860>:
+  app/controllers/cats_controller.rb:21:in `new'
+
+Started POST "/__better_errors/1a543887fbdc313e/variables" for ::1 at 2021-02-26 15:16:38 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:16:50 -0800
+Processing by CatsController#new as HTML
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+
+
+NoMethodError - undefined method `all_colors' for #<Class:0x00007f93417b4860>:
+  app/controllers/cats_controller.rb:21:in `new'
+
+Started POST "/__better_errors/4693fbb4b6fe5cf7/variables" for ::1 at 2021-02-26 15:16:50 -0800
+Started POST "/__better_errors/4693fbb4b6fe5cf7/eval" for ::1 at 2021-02-26 15:16:59 -0800
+Started POST "/__better_errors/4693fbb4b6fe5cf7/eval" for ::1 at 2021-02-26 15:17:04 -0800
+Started POST "/__better_errors/4693fbb4b6fe5cf7/eval" for ::1 at 2021-02-26 15:17:10 -0800
+Started POST "/__better_errors/4693fbb4b6fe5cf7/eval" for ::1 at 2021-02-26 15:17:12 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:17:17 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 23ms (Views: 20.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:17:18 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 17ms (Views: 16.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:17:19 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 16ms (Views: 15.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:17:19 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 14ms (Views: 13.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:17:19 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 14ms (Views: 13.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:17:20 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 17ms (Views: 16.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:17:20 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 15ms (Views: 14.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:19:02 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/_cat_form.html.erb (0.5ms)
+  Rendered cats/new.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 21ms (Views: 18.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cats/new" for ::1 at 2021-02-26 15:29:18 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/_cat_form.html.erb (0.6ms)
+  Rendered cats/new.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 20ms (Views: 17.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/cats" for ::1 at 2021-02-26 15:29:19 -0800
+Processing by CatsController#create as HTML
+  Parameters: {"cat"=>{"name"=>"", "color"=>"--select a color--", "birth_date"=>"", "description"=>""}}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::InvalidAuthenticityToken - ActionController::InvalidAuthenticityToken:
+
+Started POST "/__better_errors/270b3c098de35f5a/variables" for ::1 at 2021-02-26 15:29:20 -0800
+Started GET "/cats/new" for ::1 at 2021-02-26 15:29:54 -0800
+Processing by CatsController#new as HTML
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/_cat_form.html.erb (0.5ms)
+  Rendered cats/new.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 28ms (Views: 25.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/cats" for ::1 at 2021-02-26 15:29:55 -0800
+Processing by CatsController#create as HTML
+  Parameters: {"cat"=>{"name"=>"", "color"=>"--select a color--", "birth_date"=>"", "description"=>""}}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::InvalidAuthenticityToken - ActionController::InvalidAuthenticityToken:
+
+Started POST "/__better_errors/8ad43119b2db0904/variables" for ::1 at 2021-02-26 15:29:55 -0800
+Started POST "/cats" for ::1 at 2021-02-26 15:30:10 -0800
+Processing by CatsController#create as HTML
+  Parameters: {"cat"=>{"name"=>"Bunny", "sex"=>"M", "color"=>"orange", "birth_date"=>"2021-02-10", "description"=>"It is a cat."}}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::InvalidAuthenticityToken - ActionController::InvalidAuthenticityToken:
+
+Started POST "/__better_errors/18649e52675632d8/variables" for ::1 at 2021-02-26 15:30:10 -0800
+Started POST "/__better_errors/18649e52675632d8/variables" for ::1 at 2021-02-26 15:30:26 -0800
+Started POST "/__better_errors/18649e52675632d8/variables" for ::1 at 2021-02-26 15:30:31 -0800
+Started POST "/cats" for ::1 at 2021-02-26 15:32:20 -0800
+Processing by CatsController#create as HTML
+  Parameters: {"cat"=>{"name"=>"Bunny", "sex"=>"M", "color"=>"orange", "birth_date"=>"2021-02-10", "description"=>"It is a cat."}}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::InvalidAuthenticityToken - ActionController::InvalidAuthenticityToken:
+
+Started POST "/__better_errors/9f3dc388583d5cff/variables" for ::1 at 2021-02-26 15:32:20 -0800
+Started GET "/cats" for ::1 at 2021-02-26 15:32:24 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.8ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/_cat.html.erb (0.6ms)
+  Rendered cats/_cat.html.erb (0.1ms)
+  Rendered cats/index.html.erb within layouts/application (25.6ms)
+Completed 200 OK in 39ms (Views: 28.2ms | ActiveRecord: 10.5ms)
+
+
+Started POST "/cats" for ::1 at 2021-02-26 15:32:28 -0800
+Processing by CatsController#create as HTML
+  Parameters: {"cat"=>{"name"=>"Bunny", "sex"=>"M", "color"=>"orange", "birth_date"=>"2021-02-10", "description"=>"It is a cat."}}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+
+
+ActionController::InvalidAuthenticityToken - ActionController::InvalidAuthenticityToken:
+
+Started POST "/__better_errors/43a290aba7f1474b/variables" for ::1 at 2021-02-26 15:32:28 -0800
+Started POST "/cats" for ::1 at 2021-02-26 15:32:46 -0800
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/zsyzyork/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.5/lib/active_record/log_subscriber.rb:98
+Processing by CatsController#create as HTML
+  Parameters: {"cat"=>{"name"=>"Bunny", "sex"=>"M", "color"=>"orange", "birth_date"=>"2021-02-10", "description"=>"It is a cat."}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/cats_controller.rb:27
+  [1m[36mCat Create (1.0ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["birth_date", "2021-02-10"], ["color", "orange"], ["name", "Bunny"], ["sex", "M"], ["description", "It is a cat."], ["created_at", "2021-02-26 23:32:46.971954"], ["updated_at", "2021-02-26 23:32:46.971954"]]
+  ↳ app/controllers/cats_controller.rb:27
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/cats_controller.rb:27
+Redirected to http://localhost:3000/cats/3
+Completed 302 Found in 26ms (ActiveRecord: 9.5ms)
+
+
+Started GET "/cats/3" for ::1 at 2021-02-26 15:32:46 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mCat Load (0.5ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:9
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/_cat.html.erb (0.5ms)
+  Rendered cats/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 175ms (Views: 169.0ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/cats" for ::1 at 2021-02-26 15:33:01 -0800
+Processing by CatsController#create as HTML
+  Parameters: {"cat"=>{"name"=>"Bunny", "sex"=>"M", "color"=>"--select a color--", "birth_date"=>"2021-02-10", "description"=>"It is a cat."}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/cats_controller.rb:27
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/cats_controller.rb:27
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/_cat_form.html.erb (7.8ms)
+  Rendered cats/new.html.erb within layouts/application (11.3ms)
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/_cat_form.html.erb (13.5ms)
+  Rendered cats/new.html.erb within layouts/application (17.0ms)
+Completed 500 Internal Server Error in 55ms (ActiveRecord: 0.3ms)
+
+
+
+NoMethodError - undefined method `each' for nil:NilClass:
+  app/views/cats/_cat_form.html.erb:23:in `_app_views_cats__cat_form_html_erb__3582248089166222950_70196528245160'
+  app/views/cats/new.html.erb:3:in `_app_views_cats_new_html_erb__453435314862160057_70196528182300'
+  app/controllers/cats_controller.rb:33:in `rescue in create'
+  app/controllers/cats_controller.rb:24:in `create'
+
+Started POST "/__better_errors/e0dd9af13f248c4b/variables" for ::1 at 2021-02-26 15:33:01 -0800
+Started POST "/__better_errors/e0dd9af13f248c4b/variables" for ::1 at 2021-02-26 15:33:11 -0800
+Started POST "/__better_errors/e0dd9af13f248c4b/variables" for ::1 at 2021-02-26 15:33:17 -0800
+Started POST "/cats" for ::1 at 2021-02-26 15:33:55 -0800
+Processing by CatsController#create as HTML
+  Parameters: {"cat"=>{"name"=>"Bunny", "sex"=>"M", "color"=>"--select a color--", "birth_date"=>"2021-02-10", "description"=>"It is a cat."}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/cats_controller.rb:30
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/cats_controller.rb:30
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/_cat_form.html.erb (0.6ms)
+  Rendered cats/new.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 34ms (Views: 19.9ms | ActiveRecord: 5.2ms)
+
+
+Started POST "/cats" for ::1 at 2021-02-26 15:34:02 -0800
+Processing by CatsController#create as HTML
+  Parameters: {"cat"=>{"name"=>"kljklj", "sex"=>"M", "color"=>"--select a color--", "birth_date"=>"", "description"=>"lkjjkljkljkljkl"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/cats_controller.rb:30
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/cats_controller.rb:30
+  Rendering cats/new.html.erb within layouts/application
+  Rendered cats/_cat_form.html.erb (0.4ms)
+  Rendered cats/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 21ms (Views: 17.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cats/1" for ::1 at 2021-02-26 15:36:54 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.4ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:13
+  Rendering cats/show.html.erb within layouts/application
+  Rendered cats/_cat.html.erb (0.5ms)
+  Rendered cats/show.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 19ms (Views: 17.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/cats/1/edit" for ::1 at 2021-02-26 15:36:56 -0800
+Processing by CatsController#edit as HTML
+  Parameters: {"id"=>"1"}
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms)
+
+
+
+ActionView::MissingTemplate - Missing template cats/edit, application/edit with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/zsyzyork/Documents/Study/2020 App Academy/Git/aA_Classwork/W6D5/Cats99/app/views":
+  app/controllers/cats_controller.rb:40:in `edit'
+
+Started POST "/__better_errors/40a5365ae144716e/variables" for ::1 at 2021-02-26 15:36:56 -0800
+Started GET "/cats/1/edit" for ::1 at 2021-02-26 15:40:17 -0800
+Processing by CatsController#edit as HTML
+  Parameters: {"id"=>"1"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+
+
+NoMethodError - undefined method `id' for nil:NilClass:
+  app/controllers/cats_controller.rb:41:in `edit'
+
+Started POST "/__better_errors/7505671d01b582a8/variables" for ::1 at 2021-02-26 15:40:18 -0800
+Started GET "/cats/4" for ::1 at 2021-02-26 15:40:24 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mCat Load (0.4ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:13
+  Rendering cats/not-found.html.erb within layouts/application
+  Rendered cats/not-found.html.erb within layouts/application (0.4ms)
+Completed 404 Not Found in 19ms (Views: 14.9ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/cats" for ::1 at 2021-02-26 15:40:36 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.4ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/_cat.html.erb (0.5ms)
+  Rendered cats/_cat.html.erb (0.1ms)
+  Rendered cats/_cat.html.erb (0.1ms)
+  Rendered cats/index.html.erb within layouts/application (21.7ms)
+Completed 200 OK in 36ms (Views: 31.4ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/cats/4" for ::1 at 2021-02-26 15:41:12 -0800
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:13
+  Rendering cats/not-found.html.erb within layouts/application
+  Rendered cats/not-found.html.erb within layouts/application (0.4ms)
+Completed 404 Not Found in 16ms (Views: 14.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cats" for ::1 at 2021-02-26 15:41:14 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.4ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/_cat.html.erb (0.5ms)
+  Rendered cats/_cat.html.erb (0.1ms)
+  Rendered cats/_cat.html.erb (0.1ms)
+  Rendered cats/index.html.erb within layouts/application (12.6ms)
+Completed 200 OK in 27ms (Views: 26.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/cats/4/edit" for ::1 at 2021-02-26 15:41:18 -0800
+Processing by CatsController#edit as HTML
+  Parameters: {"id"=>"4"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+
+
+NoMethodError - undefined method `id' for nil:NilClass:
+  app/controllers/cats_controller.rb:41:in `edit'
+
+Started POST "/__better_errors/50733e0b51becafe/variables" for ::1 at 2021-02-26 15:41:18 -0800
+Started GET "/cats/4/edit" for ::1 at 2021-02-26 15:41:55 -0800
+Processing by CatsController#edit as HTML
+  Parameters: {"id"=>"4"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+
+NoMethodError - undefined method `id' for #<ActionController::Parameters:0x00007faf4e0c50a8>:
+  app/controllers/cats_controller.rb:41:in `edit'
+
+Started POST "/__better_errors/5c57a8179942dc67/variables" for ::1 at 2021-02-26 15:41:55 -0800
+Started POST "/__better_errors/5c57a8179942dc67/eval" for ::1 at 2021-02-26 15:41:58 -0800
+Started POST "/__better_errors/5c57a8179942dc67/eval" for ::1 at 2021-02-26 15:42:01 -0800
+Started POST "/__better_errors/5c57a8179942dc67/eval" for ::1 at 2021-02-26 15:42:18 -0800
+Started GET "/cats/4/edit" for ::1 at 2021-02-26 15:42:23 -0800
+Processing by CatsController#edit as HTML
+  Parameters: {"id"=>"4"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+
+
+NoMethodError - undefined method `id' for #<ActionController::Parameters:0x00007fafbf57d868>:
+  app/controllers/cats_controller.rb:41:in `edit'
+
+Started POST "/__better_errors/8bdc6e899560c428/variables" for ::1 at 2021-02-26 15:42:23 -0800
+Started POST "/__better_errors/8bdc6e899560c428/eval" for ::1 at 2021-02-26 15:42:33 -0800
+Started POST "/__better_errors/8bdc6e899560c428/eval" for ::1 at 2021-02-26 15:42:42 -0800
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:41
+Started POST "/__better_errors/8bdc6e899560c428/eval" for ::1 at 2021-02-26 15:43:20 -0800
+Started POST "/__better_errors/8bdc6e899560c428/eval" for ::1 at 2021-02-26 15:43:22 -0800
+Started POST "/__better_errors/8bdc6e899560c428/eval" for ::1 at 2021-02-26 15:43:26 -0800
+Started POST "/__better_errors/8bdc6e899560c428/eval" for ::1 at 2021-02-26 15:43:42 -0800
+  [1m[36mCat Load (1.9ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE (4) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:41
+Started POST "/__better_errors/8bdc6e899560c428/eval" for ::1 at 2021-02-26 15:43:47 -0800
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:41
+Started GET "/cats/4/edit" for ::1 at 2021-02-26 15:43:54 -0800
+Processing by CatsController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:41
+  Rendering cats/not-found.html.erb within layouts/application
+  Rendered cats/not-found.html.erb within layouts/application (0.5ms)
+Completed 404 Not Found in 21ms (Views: 16.7ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/cats/4/edit" for ::1 at 2021-02-26 15:43:55 -0800
+Processing by CatsController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/cats_controller.rb:41
+  Rendering cats/not-found.html.erb within layouts/application
+  Rendered cats/not-found.html.erb within layouts/application (0.4ms)
+Completed 404 Not Found in 15ms (Views: 13.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cats" for ::1 at 2021-02-26 15:44:00 -0800
+Processing by CatsController#index as HTML
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.4ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:3
+  Rendered cats/_cat.html.erb (0.5ms)
+  Rendered cats/_cat.html.erb (0.1ms)
+  Rendered cats/_cat.html.erb (0.1ms)
+  Rendered cats/index.html.erb within layouts/application (20.3ms)
+Completed 200 OK in 35ms (Views: 30.7ms | ActiveRecord: 3.9ms)
+
+
