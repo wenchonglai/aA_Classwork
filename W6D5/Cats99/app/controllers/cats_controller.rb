@@ -22,6 +22,7 @@ class CatsController < ApplicationController
   end
 
   def new
+    @cat = Cat.new
     render :new
   end
   
@@ -48,6 +49,17 @@ class CatsController < ApplicationController
   end
 
   def update
+    @cat = Cat.find_by(id: params[:id])
+
+    if @cat
+      if @cat.update
+        redirect_to cat_url(params[:id])
+      else
+        redirect_to edit_url(params[:id])
+      end
+    else
+      render "not-found", status: 404
+    end
 
   end
 
