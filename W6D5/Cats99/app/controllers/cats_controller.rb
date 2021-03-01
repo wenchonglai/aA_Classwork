@@ -28,13 +28,14 @@ class CatsController < ApplicationController
   
   def create
     @cat = Cat.new(strong_params)
-
-    if @cat.save
+    
+    if @cat.save!
       redirect_to cat_url(@cat)
     else
       render :new
     end
-  rescue
+  rescue => exception
+    p exception
     render :new
   end
 
@@ -78,6 +79,6 @@ class CatsController < ApplicationController
 
   private
   def strong_params
-    params.require(:cat).permit(:name, :sex, :color, :birth_date, :description)
+    params.require(:cat).permit(:name, :sex, :color, :birth_date, :description, :url)
   end
 end
