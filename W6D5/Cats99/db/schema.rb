@@ -16,14 +16,16 @@ ActiveRecord::Schema.define(version: 2021_02_28_011103) do
   enable_extension "plpgsql"
 
   create_table "cat_rental_requests", force: :cascade do |t|
+    t.integer "name", null: false
     t.integer "cat_id", null: false
-    t.integer "start_date", null: false
-    t.integer "end_date", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.string "status", default: "PENDING", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cat_id"], name: "index_cat_rental_requests_on_cat_id"
-    t.index ["end_date"], name: "index_cat_rental_requests_on_end_date"
-    t.index ["start_date"], name: "index_cat_rental_requests_on_start_date"
+    t.index ["name", "cat_id", "start_date"], name: "index_cat_rental_requests_on_name_and_cat_id_and_start_date", unique: true
+    t.index ["name"], name: "index_cat_rental_requests_on_name"
   end
 
   create_table "cats", force: :cascade do |t|

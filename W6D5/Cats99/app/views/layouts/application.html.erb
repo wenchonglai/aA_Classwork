@@ -16,7 +16,7 @@
         <div class='header-left'>
           <a href="<%= cats_url %>"><h1>Purr<span>hub</span></h1></a>
           <form action="" method="POST">
-            <input type="text" placeholder="Search ??? cats...">
+            <input type="text" placeholder="Search <%= @cat_count %> cats...">
             <button>Search</button>
           </form>
           <a href="<%= new_cat_url %>" class='button upload'>Upload</a>

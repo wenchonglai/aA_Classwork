@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'date'
 
+Cat.destroy_all
+
 cats = [ "dug", "bug", "rug", "mug", "tug", "hug", "jug", "lug", "pug", "vug", "fug",
   "drug", "plug", "smug", "slug", "snug", "thug", "chug", "glug", "trug",
   "shrug", "debug", "sprug", "almug",

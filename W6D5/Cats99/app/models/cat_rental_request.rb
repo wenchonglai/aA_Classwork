@@ -12,8 +12,8 @@
 class CatRentalRequest < ApplicationRecord
   validates :status, {inclusion: ['PENDING', 'APPROVED', 'DENIED']}
   validates :cat_id, :start_date, :end_date, {presence: true}
-  validate does_not_overlap_approved_request
-  validate end_date_after_start_date
+  validate :does_not_overlap_approved_request
+  validate :end_date_after_start_date
 
   belongs_to :cat
 
@@ -26,7 +26,7 @@ class CatRentalRequest < ApplicationRecord
 
   def overlapping_approved_requests
     CatRentalRequest
-      .where(cat_id: cat_id, :status: 'APPROVED')
+      .where(cat_id: cat_id, status: 'APPROVED')
       .where.not("start_date > ? || end_date < ?", end_date, start_date)
   end
 
