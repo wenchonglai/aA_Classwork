@@ -5,10 +5,12 @@ class CreateCats < ActiveRecord::Migration[5.2]
       t.string :color, {null: false}
       t.string :name, {null: false}
       t.string :sex, {limit: 1, null: false}
+      t.string :url, {null: false}
       t.text :description, {default: ''}
 
       t.timestamps
     end
 
+    add_index :cats, :name
   end
 end

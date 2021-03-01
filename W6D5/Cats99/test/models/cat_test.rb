@@ -7,6 +7,7 @@
 #  color       :string           not null
 #  name        :string           not null
 #  sex         :string(1)        not null
+#  url         :string           not null
 #  description :text             default("")
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

@@ -7,6 +7,7 @@
 #  color       :string           not null
 #  name        :string           not null
 #  sex         :string(1)        not null
+#  url         :string           not null
 #  description :text             default("")
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -21,6 +22,8 @@ class Cat < ApplicationRecord
   validates :birth_date, :name, { presence: true }
   validates :color, { inclusion: COLORS }
   validates :sex, { inclusion: ['M', 'F'] }
+
+  has_many :cat_rental_requests, {dependent: :destroy}
   # validate age
 
   def new

@@ -1,35 +1,51 @@
-<table>
-  <thead>
-    <tr>
-      <th colspan="2">
-        <%= cat.name %>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td> Birth Date </td>
-      <td>
-        <%= cat.birth_date %>
-      </td>
-    </tr>
-    <tr>
-      <td> Color </td>
-      <td>
-        <%= cat.color %>
-      </td>
-    </tr>
-    <tr>
-      <td> Sex </td>
-      <td>
-        <%= cat.sex %>
-      </td>
-    </tr>
-    <tr>
-      <td> Description </td>
-      <td>
-        <%= cat.description %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class = 'cat_info'>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="2" class="cat_image">
+          <a href="<%= cat_url(cat.id) %>">
+            <img src="<%= cat.url %>">
+          </a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="2" class="cat_name">
+          <a href="<%= cat_url(cat.id) %>">
+            <%= cat.name %>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td> Birth Date </td>
+        <td>
+          <%= cat.birth_date %>
+        </td>
+      </tr>
+      <tr>
+        <td> Color </td>
+        <td>
+          <%= cat.color %>
+        </td>
+      </tr>
+      <tr>
+        <td> Sex </td>
+        <td>
+          <%= cat.sex %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          "<%= cat.description %>"
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a href="<%= cat_url(cat.id) %>/edit">Edit</a>
+  <form action="<%= cat_url(cat.id) %>" method="POST">
+    <input type="hidden" name="_method" action="DELETE">
+    <%# <input type="submit" value="Delete Cat"> %>
+  </form>
+</div>

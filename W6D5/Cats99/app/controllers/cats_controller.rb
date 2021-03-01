@@ -1,6 +1,7 @@
 class CatsController < ApplicationController
   def initialize
     @colors = Cat::COLORS
+    @cat = Cat.new
     super
   end
 
@@ -22,7 +23,6 @@ class CatsController < ApplicationController
   end
 
   def new
-    @cat = Cat.new
     render :new
   end
   
@@ -52,7 +52,7 @@ class CatsController < ApplicationController
     @cat = Cat.find_by(id: params[:id])
 
     if @cat
-      if @cat.update
+      if @cat.update(strong_params)
         redirect_to cat_url(params[:id])
       else
         redirect_to edit_url(params[:id])
@@ -60,7 +60,20 @@ class CatsController < ApplicationController
     else
       render "not-found", status: 404
     end
+  end
 
+  def destroy
+    @cat = Cat.find_by(id: params[:id])
+
+    if @cat
+      if @cat.destroy
+        redirect_to cats_url
+      else
+        render json: @cat.errors.full_messages
+      end
+    else
+      render "not-found", status: 404
+    end
   end
 
   private

@@ -6,5 +6,23 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'date'
-Cat.create({birth_date: Date.new(1980, 1, 1), color: 'brown', name: 'Jug', sex: 'M', description: 'random cat'})
-Cat.create({birth_date: Date.new(1880, 1, 1), color: 'grey', name: 'Mug', sex: 'F', description: 'random cat 2'})
+
+cats = [ "dug", "bug", "rug", "mug", "tug", "hug", "jug", "lug", "pug", "vug", "fug",
+  "drug", "plug", "smug", "slug", "snug", "thug", "chug", "glug", "trug",
+  "shrug", "debug", "sprug", "almug",
+  "humbug", "unplug", "bedbug", "mudbug", "redbug", "dorbug", "bedrug",
+  "prodrug", "ladybug", "earplug", "billbug", "firebug", "goldbug", "tautaug", "lovebug", "antibug", "quahaug", "bearhug", "nondrug"
+];
+
+colors = ['brown', 'orange', 'white', 'black', 'ginger', 'blue', 'grey'];
+
+cats.shuffle.each_with_index do |cat, i|
+  Cat.create({
+    birth_date: Date.jd(Date.today.jd - rand(5000)),
+    color: colors.sample,
+    name: cat,
+    sex: ['M', 'F'].sample, 
+    url: "http://placekitten.com/#{200 + i}/#{200 + i}",
+    description: "#{Faker::Creature::Dog.meme_phrase}. Such #{Faker::Adjective.positive}. wow"
+  });
+end

@@ -10,6 +10,44 @@
   </head>
 
   <body>
-    <%= yield %>
+    
+    <header class='header'>
+      <section>
+        <div class='header-left'>
+          <a href="<%= cats_url %>"><h1>Purr<span>hub</span></h1></a>
+          <form action="" method="POST">
+            <input type="text" placeholder="Search ??? cats...">
+            <button>Search</button>
+          </form>
+          <a href="<%= new_cat_url %>" class='button upload'>Upload</a>
+        </div>
+        <div class='header-right'>
+          <div class='sign-in-up'>
+            <a href="">Log In</a>
+            <a href="">Sign Up</a>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <nav class='header'>
+      <section>
+        <ul>
+          <li>
+            <a href="<%= cats_url %>">Home</a>
+          </li>
+          <li>
+            <a href="">Purr Inventory</a>
+          </li>
+          <li>
+            <a href="#">Categories</a>
+          </li>
+        </ul>
+      </section>
+    </nav>
+
+    <section class='body'>
+      <%= yield %>
+    </section>
   </body>
 </html>
