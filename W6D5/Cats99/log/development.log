@@ -18215,3 +18215,373 @@ Migrating to CreateUsers (20210301220217)
   ↳ bin/rails:9
   [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ /Users/zsyzyork/.rbenv/versions/2.5.1/bin/annotate:23
+  [1m[35m (3935.8ms)[0m  [1m[35mCREATE DATABASE "Cats99_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (3354.4ms)[0m  [1m[35mCREATE DATABASE "Cats99_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (16.9ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (2.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "cat_rental_requests" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (211.2ms)[0m  [1m[35mCREATE TABLE "cat_rental_requests" ("id" bigserial primary key, "name" integer NOT NULL, "cat_id" integer NOT NULL, "start_date" date NOT NULL, "end_date" date NOT NULL, "status" character varying DEFAULT 'PENDING' NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (11.2ms)[0m  [1m[35mCREATE  INDEX  "index_cat_rental_requests_on_cat_id" ON "cat_rental_requests"  ("cat_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (16.1ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_cat_rental_requests_on_name_and_cat_id_and_start_date" ON "cat_rental_requests"  ("name", "cat_id", "start_date")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (11.7ms)[0m  [1m[35mCREATE  INDEX  "index_cat_rental_requests_on_name" ON "cat_rental_requests"  ("name")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "cats" CASCADE[0m
+  ↳ db/schema.rb:31
+  [1m[35m (32.2ms)[0m  [1m[35mCREATE TABLE "cats" ("id" bigserial primary key, "birth_date" date NOT NULL, "color" character varying NOT NULL, "name" character varying NOT NULL, "sex" character varying(1) NOT NULL, "url" character varying NOT NULL, "description" text DEFAULT '', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:31
+  [1m[35m (10.1ms)[0m  [1m[35mCREATE  INDEX  "index_cats_on_name" ON "cats"  ("name")[0m
+  ↳ db/schema.rb:31
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:43
+  [1m[35m (37.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "user_name" character varying NOT NULL, "password_digest" character varying, "session_token" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (12.5ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_session_token" ON "users"  ("session_token")[0m
+  ↳ db/schema.rb:43
+  [1m[35m (9.7ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_user_name" ON "users"  ("user_name")[0m
+  ↳ db/schema.rb:43
+  [1m[35m (26.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (4.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (3.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210301220217)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210226214039),
+(20210228011103);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (19.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (7.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (1.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-03-01 22:33:59.592506"], ["updated_at", "2021-03-01 22:33:59.592506"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35mSQL (14.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "cat_rental_requests" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (178.4ms)[0m  [1m[35mCREATE TABLE "cat_rental_requests" ("id" bigserial primary key, "name" integer NOT NULL, "cat_id" integer NOT NULL, "start_date" date NOT NULL, "end_date" date NOT NULL, "status" character varying DEFAULT 'PENDING' NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (9.8ms)[0m  [1m[35mCREATE  INDEX  "index_cat_rental_requests_on_cat_id" ON "cat_rental_requests"  ("cat_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (14.0ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_cat_rental_requests_on_name_and_cat_id_and_start_date" ON "cat_rental_requests"  ("name", "cat_id", "start_date")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE  INDEX  "index_cat_rental_requests_on_name" ON "cat_rental_requests"  ("name")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "cats" CASCADE[0m
+  ↳ db/schema.rb:31
+  [1m[35m (33.2ms)[0m  [1m[35mCREATE TABLE "cats" ("id" bigserial primary key, "birth_date" date NOT NULL, "color" character varying NOT NULL, "name" character varying NOT NULL, "sex" character varying(1) NOT NULL, "url" character varying NOT NULL, "description" text DEFAULT '', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:31
+  [1m[35m (10.6ms)[0m  [1m[35mCREATE  INDEX  "index_cats_on_name" ON "cats"  ("name")[0m
+  ↳ db/schema.rb:31
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:43
+  [1m[35m (34.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "user_name" character varying NOT NULL, "password_digest" character varying, "session_token" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:43
+  [1m[35m (10.0ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_session_token" ON "users"  ("session_token")[0m
+  ↳ db/schema.rb:43
+  [1m[35m (11.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_user_name" ON "users"  ("user_name")[0m
+  ↳ db/schema.rb:43
+  [1m[35m (28.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (6.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210301220217)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210226214039),
+(20210228011103);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (35.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (5.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-03-01 22:34:00.311032"], ["updated_at", "2021-03-01 22:34:00.311032"]]
+  ↳ db/schema.rb:13
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Update (1.0ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2021-03-01 22:34:00.323902"], ["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (13.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mCat Load (8.3ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (1.6ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2009-03-21"], ["color", "orange"], ["name", "chug"], ["sex", "M"], ["url", "http://placekitten.com/200/200"], ["description", "they're good dogs Brent. Such helpful. wow"], ["created_at", "2021-03-01 22:34:05.463808"], ["updated_at", "2021-03-01 22:34:05.463808"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (4.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.7ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2013-05-08"], ["color", "black"], ["name", "fug"], ["sex", "F"], ["url", "http://placekitten.com/201/201"], ["description", "smol pupperino. Such splendid. wow"], ["created_at", "2021-03-01 22:34:05.474063"], ["updated_at", "2021-03-01 22:34:05.474063"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.6ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2020-12-14"], ["color", "grey"], ["name", "hug"], ["sex", "F"], ["url", "http://placekitten.com/202/202"], ["description", "big ol' pupper. Such innocent. wow"], ["created_at", "2021-03-01 22:34:05.482880"], ["updated_at", "2021-03-01 22:34:05.482880"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.4ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2018-06-25"], ["color", "white"], ["name", "jug"], ["sex", "F"], ["url", "http://placekitten.com/204/204"], ["description", "big ol' pupper. Such perfect. wow"], ["created_at", "2021-03-01 22:34:05.494786"], ["updated_at", "2021-03-01 22:34:05.494786"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.4ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2011-09-08"], ["color", "brown"], ["name", "debug"], ["sex", "M"], ["url", "http://placekitten.com/205/205"], ["description", "smol pupperino. Such joyous. wow"], ["created_at", "2021-03-01 22:34:05.499280"], ["updated_at", "2021-03-01 22:34:05.499280"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2018-02-13"], ["color", "brown"], ["name", "mug"], ["sex", "F"], ["url", "http://placekitten.com/206/206"], ["description", "thicc doggo. Such sparkling. wow"], ["created_at", "2021-03-01 22:34:05.503698"], ["updated_at", "2021-03-01 22:34:05.503698"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.4ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2009-02-23"], ["color", "white"], ["name", "pug"], ["sex", "F"], ["url", "http://placekitten.com/207/207"], ["description", "11/10. Such lovely. wow"], ["created_at", "2021-03-01 22:34:05.508483"], ["updated_at", "2021-03-01 22:34:05.508483"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2019-09-18"], ["color", "orange"], ["name", "ladybug"], ["sex", "F"], ["url", "http://placekitten.com/208/208"], ["description", "thicc doggo. Such clean. wow"], ["created_at", "2021-03-01 22:34:05.512678"], ["updated_at", "2021-03-01 22:34:05.512678"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2013-06-17"], ["color", "grey"], ["name", "slug"], ["sex", "F"], ["url", "http://placekitten.com/209/209"], ["description", "thicc doggo. Such good. wow"], ["created_at", "2021-03-01 22:34:05.517900"], ["updated_at", "2021-03-01 22:34:05.517900"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2007-07-22"], ["color", "orange"], ["name", "firebug"], ["sex", "M"], ["url", "http://placekitten.com/210/210"], ["description", "long boi. Such open. wow"], ["created_at", "2021-03-01 22:34:05.524306"], ["updated_at", "2021-03-01 22:34:05.524306"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.9ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2014-11-30"], ["color", "grey"], ["name", "vug"], ["sex", "F"], ["url", "http://placekitten.com/211/211"], ["description", "smol pupperino. Such zealous. wow"], ["created_at", "2021-03-01 22:34:05.528594"], ["updated_at", "2021-03-01 22:34:05.528594"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2016-07-14"], ["color", "black"], ["name", "sprug"], ["sex", "M"], ["url", "http://placekitten.com/212/212"], ["description", "boop the snoot. Such cheerful. wow"], ["created_at", "2021-03-01 22:34:05.534281"], ["updated_at", "2021-03-01 22:34:05.534281"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.9ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2009-07-02"], ["color", "blue"], ["name", "thug"], ["sex", "F"], ["url", "http://placekitten.com/213/213"], ["description", "thicc doggo. Such calm. wow"], ["created_at", "2021-03-01 22:34:05.539532"], ["updated_at", "2021-03-01 22:34:05.539532"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2008-01-20"], ["color", "grey"], ["name", "almug"], ["sex", "M"], ["url", "http://placekitten.com/214/214"], ["description", "thicc doggo. Such lovely. wow"], ["created_at", "2021-03-01 22:34:05.550648"], ["updated_at", "2021-03-01 22:34:05.550648"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.6ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2015-06-13"], ["color", "orange"], ["name", "mudbug"], ["sex", "M"], ["url", "http://placekitten.com/215/215"], ["description", "heck no pal. Such enthusiastic. wow"], ["created_at", "2021-03-01 22:34:05.560598"], ["updated_at", "2021-03-01 22:34:05.560598"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2009-01-10"], ["color", "grey"], ["name", "bug"], ["sex", "F"], ["url", "http://placekitten.com/216/216"], ["description", "thicc doggo. Such vast. wow"], ["created_at", "2021-03-01 22:34:05.565209"], ["updated_at", "2021-03-01 22:34:05.565209"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.4ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2010-01-11"], ["color", "grey"], ["name", "redbug"], ["sex", "M"], ["url", "http://placekitten.com/217/217"], ["description", "zoom. Such outstanding. wow"], ["created_at", "2021-03-01 22:34:05.572330"], ["updated_at", "2021-03-01 22:34:05.572330"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.4ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2019-12-22"], ["color", "white"], ["name", "lovebug"], ["sex", "F"], ["url", "http://placekitten.com/218/218"], ["description", "mlem. Such talented. wow"], ["created_at", "2021-03-01 22:34:05.576417"], ["updated_at", "2021-03-01 22:34:05.576417"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2018-01-02"], ["color", "white"], ["name", "smug"], ["sex", "M"], ["url", "http://placekitten.com/219/219"], ["description", "boop the snoot. Such cute. wow"], ["created_at", "2021-03-01 22:34:05.580619"], ["updated_at", "2021-03-01 22:34:05.580619"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.7ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2014-02-28"], ["color", "white"], ["name", "bearhug"], ["sex", "F"], ["url", "http://placekitten.com/220/220"], ["description", "they're good dogs Brent. Such beautiful. wow"], ["created_at", "2021-03-01 22:34:05.585109"], ["updated_at", "2021-03-01 22:34:05.585109"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2021-01-09"], ["color", "grey"], ["name", "prodrug"], ["sex", "F"], ["url", "http://placekitten.com/221/221"], ["description", "big ol' pupper. Such witty. wow"], ["created_at", "2021-03-01 22:34:05.596068"], ["updated_at", "2021-03-01 22:34:05.596068"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.4ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2010-10-19"], ["color", "brown"], ["name", "glug"], ["sex", "F"], ["url", "http://placekitten.com/222/222"], ["description", "heck no pal. Such healthy. wow"], ["created_at", "2021-03-01 22:34:05.602222"], ["updated_at", "2021-03-01 22:34:05.602222"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.4ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2012-11-27"], ["color", "grey"], ["name", "bedrug"], ["sex", "F"], ["url", "http://placekitten.com/223/223"], ["description", "they're good dogs Brent. Such brainy. wow"], ["created_at", "2021-03-01 22:34:05.607175"], ["updated_at", "2021-03-01 22:34:05.607175"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.4ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2015-01-01"], ["color", "grey"], ["name", "humbug"], ["sex", "F"], ["url", "http://placekitten.com/224/224"], ["description", "they're good dogs Brent. Such bright. wow"], ["created_at", "2021-03-01 22:34:05.611494"], ["updated_at", "2021-03-01 22:34:05.611494"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2011-06-16"], ["color", "white"], ["name", "nondrug"], ["sex", "F"], ["url", "http://placekitten.com/225/225"], ["description", "they're good dogs Brent. Such calm. wow"], ["created_at", "2021-03-01 22:34:05.616321"], ["updated_at", "2021-03-01 22:34:05.616321"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.6ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2015-09-12"], ["color", "white"], ["name", "goldbug"], ["sex", "M"], ["url", "http://placekitten.com/226/226"], ["description", "zoom. Such successful. wow"], ["created_at", "2021-03-01 22:34:05.622303"], ["updated_at", "2021-03-01 22:34:05.622303"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2020-05-31"], ["color", "orange"], ["name", "snug"], ["sex", "F"], ["url", "http://placekitten.com/227/227"], ["description", "11/10. Such adventurous. wow"], ["created_at", "2021-03-01 22:34:05.628920"], ["updated_at", "2021-03-01 22:34:05.628920"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.6ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2008-06-04"], ["color", "white"], ["name", "unplug"], ["sex", "M"], ["url", "http://placekitten.com/228/228"], ["description", "smol pupperino. Such proud. wow"], ["created_at", "2021-03-01 22:34:05.634079"], ["updated_at", "2021-03-01 22:34:05.634079"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (1.0ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2013-02-03"], ["color", "black"], ["name", "billbug"], ["sex", "F"], ["url", "http://placekitten.com/229/229"], ["description", "zoom. Such fine. wow"], ["created_at", "2021-03-01 22:34:05.638526"], ["updated_at", "2021-03-01 22:34:05.638526"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.7ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2018-09-24"], ["color", "white"], ["name", "tug"], ["sex", "F"], ["url", "http://placekitten.com/230/230"], ["description", "mlem. Such handsome. wow"], ["created_at", "2021-03-01 22:34:05.647062"], ["updated_at", "2021-03-01 22:34:05.647062"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.8ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2018-01-02"], ["color", "grey"], ["name", "rug"], ["sex", "F"], ["url", "http://placekitten.com/231/231"], ["description", "long boi. Such talented. wow"], ["created_at", "2021-03-01 22:34:05.655689"], ["updated_at", "2021-03-01 22:34:05.655689"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2017-06-17"], ["color", "white"], ["name", "lug"], ["sex", "F"], ["url", "http://placekitten.com/232/232"], ["description", "boop the snoot. Such sparkling. wow"], ["created_at", "2021-03-01 22:34:05.661260"], ["updated_at", "2021-03-01 22:34:05.661260"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.6ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2016-02-08"], ["color", "grey"], ["name", "quahaug"], ["sex", "F"], ["url", "http://placekitten.com/233/233"], ["description", "big ol' pupper. Such vivacious. wow"], ["created_at", "2021-03-01 22:34:05.667997"], ["updated_at", "2021-03-01 22:34:05.667997"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.9ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2009-04-25"], ["color", "blue"], ["name", "trug"], ["sex", "F"], ["url", "http://placekitten.com/234/234"], ["description", "big ol' pupper. Such healthy. wow"], ["created_at", "2021-03-01 22:34:05.678210"], ["updated_at", "2021-03-01 22:34:05.678210"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.4ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2009-12-23"], ["color", "black"], ["name", "bedbug"], ["sex", "F"], ["url", "http://placekitten.com/235/235"], ["description", "mlem. Such calm. wow"], ["created_at", "2021-03-01 22:34:05.683985"], ["updated_at", "2021-03-01 22:34:05.683985"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2019-02-05"], ["color", "orange"], ["name", "dug"], ["sex", "M"], ["url", "http://placekitten.com/236/236"], ["description", "mlem. Such gorgeous. wow"], ["created_at", "2021-03-01 22:34:05.688652"], ["updated_at", "2021-03-01 22:34:05.688652"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.4ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2014-07-06"], ["color", "black"], ["name", "dorbug"], ["sex", "M"], ["url", "http://placekitten.com/237/237"], ["description", "they're good dogs Brent. Such lively. wow"], ["created_at", "2021-03-01 22:34:05.694587"], ["updated_at", "2021-03-01 22:34:05.694587"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2012-08-03"], ["color", "blue"], ["name", "tautaug"], ["sex", "F"], ["url", "http://placekitten.com/239/239"], ["description", "mlem. Such adventurous. wow"], ["created_at", "2021-03-01 22:34:05.702030"], ["updated_at", "2021-03-01 22:34:05.702030"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.4ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2014-08-26"], ["color", "grey"], ["name", "antibug"], ["sex", "M"], ["url", "http://placekitten.com/240/240"], ["description", "mlem. Such charming. wow"], ["created_at", "2021-03-01 22:34:05.706298"], ["updated_at", "2021-03-01 22:34:05.706298"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[36mCat Create (0.5ms)[0m  [1m[32mINSERT INTO "cats" ("birth_date", "color", "name", "sex", "url", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["birth_date", "2010-12-23"], ["color", "white"], ["name", "shrug"], ["sex", "F"], ["url", "http://placekitten.com/241/241"], ["description", "smol pupperino. Such thoughtful. wow"], ["created_at", "2021-03-01 22:34:05.710585"], ["updated_at", "2021-03-01 22:34:05.710585"]]
+  ↳ db/seeds.rb:22
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:22
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:22
