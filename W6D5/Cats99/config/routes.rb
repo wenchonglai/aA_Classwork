@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :cat_rental_requests, except: [:index]
 
   resource :session, only: [:new, :create, :destroy]
+  resources :users, only: [:new, :create]
 end

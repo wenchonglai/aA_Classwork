@@ -9,12 +9,12 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
-require 'SecureRandom'
-require 'BCrypt'
+# require 'SecureRandom'
+# require 'BCrypt'
 
 class User < ApplicationRecord
   after_initialize :ensure_session_token
-  validates user_name, session_token, {presence: true, uniqueness: true}
+  validates :user_name, :session_token, {presence: true, uniqueness: true}
 
   def password=(pwd)
     self.password_digest = BCrypt::Password.create(pwd)
@@ -26,7 +26,7 @@ class User < ApplicationRecord
   end
 
   def self.find_by_credentials(user_name, pwd)
-    user = User.find_by(username: user_name)
+    user = User.find_by(user_name: user_name)
 
     if user && user.is_password?(pwd)
       user

@@ -8,8 +8,10 @@ class UsersController < ApplicationController
     #use data from sign up form to create a new user; 
     #log in
     #then redirect to the cats index page
-    @user = User.create(strong_params)
-    
+    @user = User.create(params.require(:user).permit(:user_name, :password))
+    p params
+    # p strong_params
+
     if @user.save
       login!(@user)
       redirect_to cats_url
@@ -18,8 +20,8 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-  def strong_params
-    params.require(:user).permit(:user_name, :password)
-  end
+  # private
+  # def strong_params
+  #   params.require(:user).permit(:user_name, :password)
+  # end
 end
