@@ -13,6 +13,7 @@ require 'SecureRandom'
 require 'BCrypt'
 
 class User < ApplicationRecord
+  after_initialize :ensure_session_token
   validates user_name, session_token, {presence: true, uniqueness: true}
 
   def password=(pwd)
@@ -38,5 +39,9 @@ class User < ApplicationRecord
     self.session_token = SecureRandom::urlsafe_base64
     self.save!
     self.session_token
+  end
+
+  def ensure_session_token
+    self.session_token ||= SecureRandom::urlsafe_base64
   end
 end

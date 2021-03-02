@@ -1,22 +1,25 @@
 class UsersController < ApplicationController
-
-    def new
-        render :new
+  def new
+    #render sign up form
+    render :new
+  end
+  
+  def create
+    #use data from sign up form to create a new user; 
+    #log in
+    #then redirect to the cats index page
+    @user = User.create(strong_params)
+    
+    if @user.save
+      login!(@user)
+      redirect_to cats_url
+    else
+      render :new
     end
+  end
 
-    def create
-        @user= User.find_by_credentials(params[:user][:user_name], params[:user][:password])
-
-        if @user
-            session[:session_token]= @user.reset_session_token!
-            redirect_to cats_url
-        else
-            render :new
-        end
-
-    end
-
-    def destroy
-        
-    end
+  private
+  def strong_params
+    params.require(:user).permit(:user_name, :password)
+  end
 end
