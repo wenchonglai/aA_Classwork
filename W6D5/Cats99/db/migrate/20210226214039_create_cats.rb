@@ -7,10 +7,12 @@ class CreateCats < ActiveRecord::Migration[5.2]
       t.string :sex, {limit: 1, null: false}
       t.string :url, {null: false}
       t.text :description, {default: ''}
+      t.integer :user_id, {null: false}
 
       t.timestamps
     end
 
     add_index :cats, :name
+    add_index :cats, :user_id
   end
 end

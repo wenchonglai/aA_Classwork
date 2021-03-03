@@ -35,19 +35,22 @@ ActiveRecord::Schema.define(version: 2021_03_01_220217) do
     t.string "sex", limit: 1, null: false
     t.string "url", null: false
     t.text "description", default: ""
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_cats_on_name"
+    t.index ["user_id"], name: "index_cats_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "user_name", null: false
+    t.string "username", null: false
+    t.string "email", null: false
     t.string "password_digest"
     t.string "session_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
-    t.index ["user_name"], name: "index_users_on_user_name", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end

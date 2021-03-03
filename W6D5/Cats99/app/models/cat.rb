@@ -24,6 +24,11 @@ class Cat < ApplicationRecord
   validates :sex, { inclusion: ['M', 'F'] }
 
   has_many :cat_rental_requests, {dependent: :destroy}
+  belongs_to :owner,
+    foreign_key: :user_id,
+    class_name: :User
+
+  validates :owner, {presence: true}
   # validate age
 
   def new

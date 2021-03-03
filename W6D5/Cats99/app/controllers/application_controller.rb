@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :require_logged_in, only: [:index]
+  helper_method :current_user
 
   def initialize(*args)
     @cat_count = Cat.count

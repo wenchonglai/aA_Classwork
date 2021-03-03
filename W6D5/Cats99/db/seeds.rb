@@ -7,6 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'date'
 
+User.destroy_all
+
+user = User.new(username: 'admin', email: 'zsyzyork@gmail.com', password: 'password')
+user.save
+
+user = User.new(username: 'test', email: 'test@testing.com', password: 'testing')
+user.save
+
 Cat.destroy_all
 
 cats = [ "dug", "bug", "rug", "mug", "tug", "hug", "jug", "lug", "pug", "vug", "fug",
@@ -24,6 +32,7 @@ cats.shuffle.each_with_index do |cat, i|
     color: colors.sample,
     name: cat,
     sex: ['M', 'F'].sample, 
+    user_id: 1,
     url: "http://placekitten.com/#{200 + i}/#{200 + i}",
     description: "#{Faker::Creature::Dog.meme_phrase}. Such #{Faker::Adjective.positive}. wow"
   });

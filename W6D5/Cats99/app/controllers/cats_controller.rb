@@ -1,4 +1,7 @@
 class CatsController < ApplicationController
+  before_action :require_logged_in, only: [:new, :create, :edit, :update]
+  before_action :require_ownership, only: [:edit, :update]
+
   def initialize
     @colors = Cat::COLORS
     @cat = Cat.new
@@ -28,6 +31,7 @@ class CatsController < ApplicationController
   
   def create
     @cat = Cat.new(strong_params)
+    @cat.user_id = self.current_user.id
     
     if @cat.save!
       redirect_to cat_url(@cat)
@@ -35,7 +39,6 @@ class CatsController < ApplicationController
       render :new
     end
   rescue => exception
-    p exception
     render :new
   end
 
@@ -77,8 +80,14 @@ class CatsController < ApplicationController
     end
   end
 
+  
   private
+  def require_ownership
+    has_ownership = self.current_user.cats.find_by(id: params[:id])
+    redirect_to cats_url unless has_ownership
+  end
+
   def strong_params
-    params.require(:cat).permit(:name, :sex, :color, :birth_date, :description, :url)
+    params.require(:cat).permit(:name, :sex, :color, :birth_date, :description, :user_id, :url)
   end
 end

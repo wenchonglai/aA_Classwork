@@ -3,9 +3,11 @@
 
 <form action="<%=url %>" method="POST">
 
-<% if action == "PATCH" %>
-  <input type="hidden" name="_method" value="<%= action %>">
-<% end %>
+  <% if action == "PATCH" %>
+    <input type="hidden" name="_method" value="<%= action %>">
+  <% end %>
+
+  <%= auth_token %>
 
   <table>
     <tbody>

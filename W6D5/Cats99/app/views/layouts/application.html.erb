@@ -22,9 +22,25 @@
           <a href="<%= new_cat_url %>" class='button upload'>Upload</a>
         </div>
         <div class='header-right'>
-          <div class='sign-in-up'>
-            <a href="">Log In</a>
-            <a href="">Sign Up</a>
+          <div class='sign-auth'>
+            <% unless current_user %>
+              <a href="<%= new_session_url %>">Log In</a>
+              <a href="<%= new_user_url %>">Sign Up</a>
+            <% else %>
+              <div class="welcome">
+                Welcome
+                <br/>
+                <span>
+                  <%= current_user.username %>
+                </span>
+              </div>
+              <form action="<%= session_url %>" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <%= auth_token %>
+                <input type="submit" value="Sign Out">
+              </form>
+            <% end %>
+            
           </div>
         </div>
       </section>
@@ -50,4 +66,8 @@
       <%= yield %>
     </section>
   </body>
+
+  <footer class='footer'>
+    <%= yield :footer %>
+  </footer>
 </html>

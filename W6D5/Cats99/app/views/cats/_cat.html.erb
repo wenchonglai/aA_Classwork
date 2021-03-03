@@ -43,9 +43,15 @@
     </tbody>
   </table>
 
-  <a href="<%= cat_url(cat.id) %>/edit">Edit</a>
+  
+  <% if current_user && current_user.id == cat.user_id %>
+    <a href="<%= cat_url(cat.id) %>/edit">Edit</a>
+  <% end %>
+  
+
   <form action="<%= cat_url(cat.id) %>" method="POST">
     <input type="hidden" name="_method" action="DELETE">
+    <%= auth_token %>
     <%# <input type="submit" value="Delete Cat"> %>
   </form>
 </div>

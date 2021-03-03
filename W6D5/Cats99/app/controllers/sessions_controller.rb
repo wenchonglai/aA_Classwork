@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   def create
     #if successful, log in the user, and redirect to the index page
     #if not successful, 
-    @user = User.find_by_credentials(params[:user][:user_name], params[:user][:password])
+    @user = User.find_by_credentials(params[:session][:username], params[:session][:password])
 
     if @user
       self.login!(@user)
@@ -19,7 +19,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # @user = User.find_by_credentials(params[:user][:user_name], params[:user][:password])
+    # @user = User.find_by_credentials(params[:user][:username], params[:user][:password])
     self.logout!
+    redirect_to cats_url
   end
 end

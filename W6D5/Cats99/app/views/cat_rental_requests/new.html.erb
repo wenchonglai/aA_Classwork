@@ -1,5 +1,6 @@
 <h2>Rent A Cat</h2>
 <form action="/cat_rental_requests" method="post">
+  <%= auth_token %>
   <label for="cat_id">Select a cat:</label>
   <select name="request[cat_id]" id="cat_id">
     <% @cats.each do |cat| %>
