@@ -26,11 +26,49 @@ RSpec.describe User, type: :model do
     
   end
   
+  let(:username) { 'capy' }
+  let(:password) { 'barara' }
+  let(:user) { User.new(username: username, password: password) }
+  
   describe "password encryption" do
+    
     it "sets a password reader" do
-      user = User.new(username: 'capy', password: 'barara')
       expect(user.password).to eq('barara')
     end
+    
+    it "should generate password_digest that responds to password" do
+      expect(BCrypt::Password.new(user.password_digest)).to eq(password)
+    end
+    
+    it "should change password_digest once password is changed" do
+      digest = user.password_digest
+      user.password = 'banana'
+      expect(user.password_digest).not_to eq(digest)
+    end
   end
+
+  describe "self::find_by_credentials" do
+    before(:each) { user.save! }
+    context "correct credentials" do
+      it "should return the correct user instance" do
+        expect(User.find_by_credentials(username, password)).to eq(user)
+      end
+    end
+    context "incorrect username" do
+      it "should return nil" do
+        user = User.find_by_credentials("Lady Gaga", password)
+        expect(user).to be nil
+        expect(user.errors[:base]).to include("kljasdflha84")
+      end
+    end
+    context "incorrect password" do
+      it "should return nil" do
+        user = User.find_by_credentials(username, "password")
+        expect(user).to be nil
+        expect(user.errors[:base]).to include("kljasdflha84")
+      end
+    end
+  end
+
 
 end
