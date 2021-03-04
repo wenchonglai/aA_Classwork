@@ -12,7 +12,14 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  
+  let(:username) { 'capy' }
+  let(:password) { 'barara' }
+  let(:user) { User.new(username: username, password: password) }
+  
+  
   describe "validations" do
+    before(:each) {user.save!}
     it {should validate_presence_of(:username)}
     it {should validate_presence_of(:password_digest)}
     it {should validate_presence_of(:session_token)}
@@ -21,17 +28,13 @@ RSpec.describe User, type: :model do
     it {should validate_length_of(:password).is_at_least(6)}
   end
   
+
   describe "associations" do
     it {should have_many(:goals)}
-    
   end
   
-  let(:username) { 'capy' }
-  let(:password) { 'barara' }
-  let(:user) { User.new(username: username, password: password) }
-  
+
   describe "password encryption" do
-    
     it "sets a password reader" do
       expect(user.password).to eq('barara')
     end
@@ -58,24 +61,25 @@ RSpec.describe User, type: :model do
       it "should return nil" do
         user = User.find_by_credentials("Lady Gaga", password)
         expect(user).to be nil
-        expect(user.errors[:base]).to include("kljasdflha84")
+        # expect(user.errors[:base]).to include("kljasdflha84")
       end
     end
     context "incorrect password" do
       it "should return nil" do
         user = User.find_by_credentials(username, "password")
         expect(user).to be nil
-        expect(user.errors[:base]).to include("kljasdflha84")
+        # expect(user.errors[:base]).to include("kljasdflha84")
       end
     end
   end
 
   describe "#reset_session_token!" do
     context "ensures session token method" do
-      let (:reset_session_token){user.reset_session_token!}
-      
+      let(:reset_session_token) {user.reset_session_token!}
+     
       it "should invoke SecureRandom::urlsafe_base64" do
-        expect(reset_session_token).to receive("SecureRandom::urlsafe_base64")
+        old_session_token = user.session_token
+        expect(user.reset_session_token!).to_not eq(old_session_token)
       end
       
       it "should save session token to users table" do
