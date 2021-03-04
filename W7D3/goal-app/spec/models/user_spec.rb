@@ -47,7 +47,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "self::find_by_credentials" do
+  describe "::find_by_credentials" do
     before(:each) { user.save! }
     context "correct credentials" do
       it "should return the correct user instance" do
@@ -70,5 +70,22 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#reset_session_token!" do
+    context "ensures session token method" do
+      let (:reset_session_token){user.reset_session_token!}
+      
+      it "should invoke SecureRandom::urlsafe_base64" do
+        expect(reset_session_token).to receive("SecureRandom::urlsafe_base64")
+      end
+      
+      it "should save session token to users table" do
+        expect(reset_session_token).to eq(user.session_token)
+      end
+
+      it "should return a session token after being invoked" do
+        expect(reset_session_token).to be_a(String)
+      end
+    end
+  end
 
 end
