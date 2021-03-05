@@ -108,13 +108,12 @@ article {
 }
 
 .opinions-list {
-	list-style: circle;
 	padding-left: 15px;
 	font-weight: bold;
 	font-size: 10px;
 
 	li {
-    list-style:;
+    list-style:initial;
 		margin: 5px 0;
 	}
 }
