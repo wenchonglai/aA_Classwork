@@ -10,7 +10,7 @@ body {
 	margin: 0 auto;
 	font-family: $serif;
 	font-size: 12px;
-	min-width: 960px;
+	
 }
 
 button {
@@ -116,4 +116,23 @@ small {
 }
 input[type="search"] {
 	padding: 5px;
+}
+
+@media screen and (max-width: 1000px) {
+  .opinion, .main-story, .main-content{
+    width: 100% !important;
+    display: block !important;
+  }
+	nav.section-nav{
+		display: none !important;
+	}
+	div.masthead{
+		margin-top: 25px;
+	}
+	#subscribe-btn{
+		display: none;
+	}
+	#login-btn{
+		display: none;
+	}
 }

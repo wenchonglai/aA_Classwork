@@ -1,0 +1,10 @@
+<% arr = ["World", "Medellín", "Tijuana", "Meth Cooking Prep", "Jumpstart", "Darknet", "Black Market", "Money Laundering", "TalentMatch", "Gangs", "All"] %>
+<nav id="sections-sidebar">
+  <ul>
+    <% arr.each do |text| %>
+      <li>
+        <a href="#"><%= text %></a>
+      </li>
+    <% end %>
+  </ul>
+</nav>
