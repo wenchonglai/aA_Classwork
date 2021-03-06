@@ -1,5 +1,6 @@
 <% arr = ["World", "Medellín", "Tijuana", "Meth Cooking Prep", "Jumpstart", "Darknet", "Black Market", "Money Laundering", "TalentMatch", "Gangs", "All"] %>
 <nav class="section-nav">
+
   <ul>
     <% arr.each do |text| %>
       <li>
@@ -7,4 +8,15 @@
       </li>
     <% end %>
   </ul>
+
+  <div id="search-modal">
+    <form action="#" method="get">
+      <input type="search" placeholder="Search Drug Academy Times" value>
+      <button type="submit">GO</button>
+    </form>
+    <div class="close">
+      <i class="fas fa-times-circle" ></i>
+    </div>
+
+  </div>
 </nav>

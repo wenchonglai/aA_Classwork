@@ -3,6 +3,8 @@
   justify-content: space-between;
   padding-top: 10px;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .left-nav > ul,

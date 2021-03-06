@@ -20,6 +20,10 @@ span, article, footer, time, small {
   background: transparent;
 }
 
+div.logo {
+  user-select: none;
+}
+
 strong {
   font-weight: 700;
 }
