@@ -123,7 +123,10 @@ input[type="search"] {
     width: 100% !important;
     display: block !important;
   }
-	nav.section-nav{
+	#search-modal{
+		margin: -10px !important;
+	}
+	nav.section-nav > ul{
 		display: none !important;
 	}
 	div.masthead{
