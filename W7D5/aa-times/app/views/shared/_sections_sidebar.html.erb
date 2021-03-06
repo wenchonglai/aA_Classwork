@@ -1,9 +1,59 @@
-<% arr = ["World", "Medellín", "Tijuana", "Meth Cooking Prep", "Jumpstart", "Darknet", "Black Market", "Money Laundering", "TalentMatch", "Gangs", "All"] %>
-<nav id="sections-sidebar">
-  <ul>
-    <% arr.each do |text| %>
+<% arr = [ ["San Francisco", [
+    "Students",
+    "Teaching Assistants",
+    "Instructors",
+    "Career Advisors",
+    "Cats"
+  ]],
+
+  ["Bootcamp Prep", [
+    "Students",
+    "Instructors",
+    "Cats"
+  ]],
+
+  ["Online", [
+    "Immersive",
+    "Bootcamp Prep",
+    "Cats"
+  ]],
+    
+        
+  ["Sales", [
+    "Associates",
+    "Analytics",
+    "Cats"
+  ]],
+            
+  ["Alumni", [
+    "Students",
+    "Companies",
+    "Opinions",
+    "Cats"
+  ]]
+] %>
+            
+
+
+<nav id="sections-sidebar" class="sections-sidebar">
+  <ul class="category">
+    <% arr.each do |sub| %>
       <li>
-        <a href="#"><%= text %></a>
+        <a href="#"><%= sub[0] %>
+          <i class="fas fa-chevron-right"></i>
+        </a>
+
+        <div class="sub-category">
+          <p class="subtitle"><%= sub[0] %></p>
+          <ul>
+            <% sub[1].each do |el| %>
+              <li>
+                <a href="#"><%= el %></a>
+              </li>
+            <% end %>
+            
+          </ul>
+        </div>
       </li>
     <% end %>
   </ul>
