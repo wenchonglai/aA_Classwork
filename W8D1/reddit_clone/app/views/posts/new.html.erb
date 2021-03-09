@@ -1,0 +1,13 @@
+<h1>New Post</h1>
+
+<div>
+  <h4><%= flash[:errors] %></h4>
+</div>
+
+<form action="<%= posts_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <%= render 'post_template', post: @post %>
+
+  <input type="submit" value="New Post">
+</form>

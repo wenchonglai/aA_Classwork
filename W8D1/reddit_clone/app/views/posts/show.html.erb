@@ -1,0 +1,37 @@
+<h1><%= @post.title %></h1>
+
+<p><%= @post.url %></p>
+<p><%= @post.content %></p>
+
+<h4>Subs</h4>
+<ul>
+  <% @post.subs.each do |sub| %>
+    <li>
+      <%= link_to sub.title, sub_url(sub)%>
+    </li>
+  <%end%>
+</ul>
+
+<% if current_user.id == @post.author_id %>
+  <%= link_to 'Edit Post', edit_post_url %>
+
+  <form action= "<%=post_url(@post)%>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <input type="submit" value="Delete Post">
+  </form>
+
+<% end %>
+
+<ul>
+
+  <% @post.comments.where(parent_comment_id: nil).each do |comment| %>
+    <p><%= comment.content %></p>
+    <%= link_to "View Thread", comment_url(comment) %>
+  <% end %>
+</ul>
+
+<%= link_to 'Comment', comments_url %>
+

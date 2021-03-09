@@ -1,0 +1,10 @@
+<p>comment.content</p>
+
+<ul>
+  <%comment.child_comments.each do |child|%>
+
+    <li><%=render "comment", comment: child%></li>
+
+  <%end%>
+
+</ul>

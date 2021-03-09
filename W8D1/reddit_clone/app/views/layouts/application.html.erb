@@ -1,0 +1,63 @@
+<%# 
+                   Prefix Verb   URI Pattern                                                                              Controller#Action
+                user_subs POST   /users/:user_id/subs(.:format)                                                           subs#create
+                    users GET    /users(.:format)                                                                         users#index
+                          POST   /users(.:format)                                                                         users#create
+                 new_user GET    /users/new(.:format)                                                                     users#new
+                     user GET    /users/:id(.:format)                                                                     users#show
+                          DELETE /users/:id(.:format)                                                                     users#destroy
+                sub_posts GET    /subs/:sub_id/posts(.:format)                                                            posts#index
+                     subs GET    /subs(.:format)                                                                          subs#index
+                  new_sub GET    /subs/new(.:format)                                                                      subs#new
+                 edit_sub GET    /subs/:id/edit(.:format)                                                                 subs#edit
+                      sub GET    /subs/:id(.:format)                                                                      subs#show
+                          PATCH  /subs/:id(.:format)                                                                      subs#update
+                          PUT    /subs/:id(.:format)                                                                      subs#update
+                          DELETE /subs/:id(.:format)                                                                      subs#destroy
+                    posts POST   /posts(.:format)                                                                         posts#create
+                 new_post GET    /posts/new(.:format)                                                                     posts#new
+                edit_post GET    /posts/:id/edit(.:format)                                                                posts#edit
+                     post GET    /posts/:id(.:format)                                                                     posts#show
+                          PATCH  /posts/:id(.:format)                                                                     posts#update
+                          PUT    /posts/:id(.:format)                                                                     posts#update
+                          DELETE /posts/:id(.:format)                                                                     posts#destroy
+              new_session GET    /session/new(.:format)                                                                   sessions#new
+                  session DELETE /session(.:format)                                                                       sessions#destroy
+                          POST   /session(.:format)                                                                       sessions#create
+ %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RedditClone</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="sign-auth">
+        <%if logged_in?%> 
+          <div><%= current_user.username %></div>
+          <%= form_with url: session_url, method: :delete do |form| %>
+            <%= form.submit("Log Out") %>
+          <% end %>
+        <%else%>
+          <%= link_to 'Log In', new_session_url %>
+          <%= link_to 'Sign Up', new_user_url %>
+        <%end%>
+      </div>
+    </header>
+
+    <section>
+      
+      <%= link_to 'Create a sub', new_sub_url %>
+      <%= link_to 'Create a post', new_post_url %>
+      
+    </section>
+
+    <%= yield %>
+  </body>
+</html>

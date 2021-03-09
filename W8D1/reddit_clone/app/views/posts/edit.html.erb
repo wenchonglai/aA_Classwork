@@ -1,0 +1,14 @@
+<h1>Edit Post</h1>
+
+<div>
+  <h4><%= flash[:errors] %></h4>
+</div>
+
+<form action="<%= posts_url %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <%= render 'post_template', post: @post %>
+
+  <input type="submit" value="Edit Post">
+</form>
