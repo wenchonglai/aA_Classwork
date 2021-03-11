@@ -248,7 +248,7 @@ describe("Board", function () {
       testBoard.placePiece([2, 3], "black");
       expect(testBoard.grid[2][3].color).toEqual("black");
     });
-
+      
     it("should flip captured pieces", function () {
       testBoard.placePiece([2, 3], "black");
       expect(testBoard.grid[3][3].color).toEqual("black");

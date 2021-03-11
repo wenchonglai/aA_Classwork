@@ -91,25 +91,23 @@ Board.prototype.isOccupied = function (pos) {
  * Returns empty array if no pieces of the opposite color are found.
  */
 Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
-  
   let arr = [];
-  // for (let dir of Board.DIRS) {
-    let [x, y] = pos;
-    while ((x += dir[0]) >= 0 && x <= 7 && (y += dir[1]) >= 0 && y <= 7) {
-      
-      let piece = this.getPiece([x, y]);
-      console.log(x, y);
-      
-      if (!piece || piece.color === color) {
-        break;
-      }
-      if (piece.oppColor() === color) {
-        arr.push([x, y]);
-      }
-    }
-    console.log(arr);
-  // }
-  return arr;
+  let [x, y] = pos;
+
+  while (
+    (x += dir[0]) >= 0 && x <= 7 &&
+    (y += dir[1]) >= 0 && y <= 7
+  ) {
+    let piece = this.getPiece([x, y]);
+    
+    if (!piece) return [];
+
+    if (piece.color === color) return arr;
+
+    if (piece.oppColor() === color) arr.push([x, y]);
+  }
+
+  return [];
 };
 
 /**
@@ -118,6 +116,14 @@ Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
  * color being flipped.
  */
 Board.prototype.validMove = function (pos, color) {
+  if (this.isOccupied(pos))
+    return false;
+
+  for (let dir of Board.DIRS) 
+    if (this._positionsToFlip(pos, color, dir).length > 0)
+      return true;
+
+  return false;
 };
 
 /**
@@ -127,6 +133,18 @@ Board.prototype.validMove = function (pos, color) {
  * Throws an error if the position represents an invalid move.
  */
 Board.prototype.placePiece = function (pos, color) {
+  if (!this.validMove(pos, color)) throw new Error("Invalid move!");
+
+  let arr = [];
+
+  for (let dir of Board.DIRS) {
+    arr.push(...this._positionsToFlip(pos, color, dir));
+  }
+
+  for (let pos of arr)
+    this.getPiece(pos).flip();
+
+  this.grid[pos[0]][pos[1]] = new Piece(color);
 };
 
 /**
@@ -134,6 +152,14 @@ Board.prototype.placePiece = function (pos, color) {
  * the Board for a given color.
  */
 Board.prototype.validMoves = function (color) {
+  let arr = [];
+
+  for (let i = 0; i < 8; i ++)
+    for (let j = 0; j < 8; j ++)
+      if ( this.validMove([i, j], color) )
+        arr.push([i, j]);
+  
+  return arr;
 };
 
 /**
