@@ -20,7 +20,7 @@ Array.prototype.myMap = function (callback, thisArg = this) {
 
 // console.log([1, 2, 3].myMap((el,i) => el * i))
 
-const arr = [1,2,3]
+// const arr = [1,2,3]
 
 // arr.myEach( function(el,i,a) {
 //   this[i] = "a".repeat(el)
@@ -28,8 +28,38 @@ const arr = [1,2,3]
 
 // console.log(arr);
 
-arr.myEach(function (el, i, a) {
-  a[i] = "a".repeat(el)
-},);
+// arr.myEach(function (el, i, a) {
+//   a[i] = "a".repeat(el)
+// },);
 
-console.log(arr)
+// console.log(arr)
+
+Array.prototype.myReduce = function(callback, initialValue){
+  let acc = initialValue;
+  let i = 0;
+
+  // if (acc === undefined){
+  //   acc = this[0];
+
+  //   for (let i = 1; i < this.length; i++){
+  //     acc = callback(acc, this[i]);
+  //   }
+  // } else {
+  //   for (let i = 0; i < this.length; i++){
+  //     acc = callback(acc, this[i]);
+  //   }
+  // }
+
+  if (acc === undefined){
+    acc = this[0];
+    i = 1;
+  }
+
+  for (; i < this.length; i++)
+    acc = callback(acc, this[i]);
+  
+
+  return acc;
+};
+
+// console.log( [1,2,3,4,5].myReduce((acc, el)=> acc * el) );
