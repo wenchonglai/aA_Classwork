@@ -60,13 +60,22 @@ Board.prototype.getPiece = function (pos) {
  * matches a given color.
  */
 Board.prototype.isMine = function (pos, color) {
+  let piece = this.getPiece(pos);
+  return piece && piece.color === color;
 };
 
 /**
  * Checks if a given position has a piece on it.
  */
 Board.prototype.isOccupied = function (pos) {
+  return !!this.getPiece(pos)
 };
+
+// Board.DIRS = [
+//   [ 0,  1], [ 1,  1], [ 1,  0],
+//   [ 1, -1], [ 0, -1], [-1, -1],
+//   [-1,  0], [-1,  1]
+// ];
 
 /**
  * Recursively follows a direction away from a starting position, adding each
@@ -82,6 +91,25 @@ Board.prototype.isOccupied = function (pos) {
  * Returns empty array if no pieces of the opposite color are found.
  */
 Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
+  
+  let arr = [];
+  // for (let dir of Board.DIRS) {
+    let [x, y] = pos;
+    while ((x += dir[0]) >= 0 && x <= 7 && (y += dir[1]) >= 0 && y <= 7) {
+      
+      let piece = this.getPiece([x, y]);
+      console.log(x, y);
+      
+      if (!piece || piece.color === color) {
+        break;
+      }
+      if (piece.oppColor() === color) {
+        arr.push([x, y]);
+      }
+    }
+    console.log(arr);
+  // }
+  return arr;
 };
 
 /**
