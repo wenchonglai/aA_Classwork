@@ -28,7 +28,7 @@ body { overflow-y: scroll; }
 .jasmine_html-reporter .exceptions { color: #fff; float: right; margin-top: 5px; margin-right: 5px; }
 .jasmine_html-reporter .bar { line-height: 28px; font-size: 14px; display: block; color: #eee; }
 .jasmine_html-reporter .bar.failed { background-color: #ca3a11; }
-.jasmine_html-reporter .bar.passed { background-color: #007069; }
+.jasmine_html-reporter .bar.passed { background-color: #007069; font-size: 18px;}
 .jasmine_html-reporter .bar.skipped { background-color: #bababa; }
 .jasmine_html-reporter .bar.errored { background-color: #ca3a11; }
 .jasmine_html-reporter .bar.menu { background-color: #fff; color: #aaa; }
@@ -47,7 +47,7 @@ body { overflow-y: scroll; }
 .jasmine_html-reporter .summary { margin-top: 14px; }
 .jasmine_html-reporter .summary ul { list-style-type: none; margin-left: 14px; padding-top: 0; padding-left: 0; }
 .jasmine_html-reporter .summary ul.suite { margin-top: 7px; margin-bottom: 7px; }
-.jasmine_html-reporter .summary li.passed a { color: #007069; }
+.jasmine_html-reporter .summary li.passed a { color: #007069; font-size: 18px;}
 .jasmine_html-reporter .summary li.failed a { color: #ca3a11; }
 .jasmine_html-reporter .summary li.empty a { color: #ba9d37; }
 .jasmine_html-reporter .summary li.pending a { color: #ba9d37; }
