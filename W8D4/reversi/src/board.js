@@ -145,6 +145,7 @@ Board.prototype.placePiece = function (pos, color) {
     this.getPiece(pos).flip();
 
   this.grid[pos[0]][pos[1]] = new Piece(color);
+  return arr;
 };
 
 /**

@@ -22,21 +22,21 @@ Game.prototype._flipTurn = function () {
 };
 
 // Dreaded global state!
-let rlInterface;
+// let rlInterface;
 
 /**
  * Creates a readline interface and starts the run loop.
  */
 Game.prototype.play = function () {
-  rlInterface = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    terminal: false
-  });
+  // rlInterface = readline.createInterface({
+  //   input: process.stdin,
+  //   output: process.stdout,
+  //   terminal: false
+  // });
 
   this.runLoop(function () {
-    rlInterface.close();
-    rlInterface = null;
+  //   rlInterface.close();
+  //   rlInterface = null;
   });
 };
 
@@ -44,20 +44,20 @@ Game.prototype.play = function () {
  * Gets the next move from the current player and
  * attempts to make the play.
  */
-Game.prototype.playTurn = function (callback) {
-  this.board.print();
-  rlInterface.question(
-    `${this.turn}, where do you want to move?`,
-    handleResponse.bind(this)
-  );
+Game.prototype.playTurn = function (pos) {
+  // this.board.print();
+  // rlInterface.question(
+  //   `${this.turn}, where do you want to move?`,
+  //   handleResponse.bind(this)
+  // );
 
   function handleResponse(answer) {
-    const pos = JSON.parse(answer);
-    if (!this.board.validMove(pos, this.turn)) {
-      console.log("Invalid move!");
-      this.playTurn(callback);
-      return;
-    }
+    // const pos = JSON.parse(answer);
+    // if (!this.board.validMove(pos, this.turn)) {
+    //   console.log("Invalid move!");
+    //   this.playTurn(callback);
+    //   return;
+    // }
 
     this.board.placePiece(pos, this.turn);
     this._flipTurn();
@@ -70,10 +70,10 @@ Game.prototype.playTurn = function (callback) {
  */
 Game.prototype.runLoop = function (overCallback) {
   if (this.board.isOver()) {
-    console.log("The game is over!");
+    alert("The game is over!");
     overCallback();
   } else if (!this.board.hasMove(this.turn)) {
-    console.log(`${this.turn} has no move!`);
+    alert(`${this.turn} has no move!`);
     this._flipTurn();
     this.runLoop();
   } else {

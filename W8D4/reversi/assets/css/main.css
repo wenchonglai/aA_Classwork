@@ -1,0 +1,60 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body{
+  
+}
+
+#board {
+  display: flex;
+  height: 480px;
+  width: 480px;
+  position: relative;
+  margin: auto;
+  background: #ddd;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  box-shadow: 4px 4px 4px 0 #0000003f;
+  
+}
+
+.piece {
+  height: 60px;
+  width: 60px;
+  background: green;
+  display: inline-block;
+  border: 1px #ffffff7f solid;
+  user-select: none;
+  position: relative;
+}
+
+.piece:hover {
+  background: greenyellow;
+  cursor: pointer;
+}
+
+.piece.black::before, .piece.white::before {
+  position: absolute;
+  z-index: 9999;
+  height: 40px;
+  width: 40px;
+  margin: 10px;
+  border-radius: 20px;
+  box-shadow: 4px 4px 4px 0 #0000007f;
+  content: "";
+}
+
+.piece.black::before {
+  background: #000;
+}
+
+.piece.white::before {
+  background: #fff;
+}
+
+.piece.active {
+  border: inset 3px red;
+}
