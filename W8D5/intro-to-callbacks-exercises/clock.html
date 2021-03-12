@@ -1,0 +1,24 @@
+<body>
+    <script>
+        class Clock {
+                constructor(div) {
+                    this.time = new Date();
+                    this.div = div;
+                    setInterval(this._tick.bind(this), 1000)
+                }
+
+                printTime(time) {
+                    div.innerHTML = time.toTimeString().split(' ')[0];
+                }
+
+                _tick() {
+                    this.time = new Date();
+                    this.printTime(this.time);
+                }
+
+            }
+            div = document.createElement("div");
+            document.body.appendChild(div);
+            clock = new Clock(div);
+    </script>
+</body>
