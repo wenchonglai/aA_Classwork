@@ -8,10 +8,10 @@ if (typeof window === 'undefined'){
  * Returns a 2D array (8 by 8) with two black pieces at [3, 4] and [4, 3]
  * and two white pieces at [3, 3] and [4, 4]
  */
-function _makeGrid () {
-  let grid = new Array(8)
+function _makeGrid (width, height) {
+  let grid = new Array(height)
     .fill(1)
-    .map( () => new Array(8) );
+    .map( () => new Array(width) );
 
   grid[3][4] = new Piece('black');
   grid[4][3] = new Piece('black');
@@ -24,8 +24,11 @@ function _makeGrid () {
 /**
  * Constructs a Board with a starting grid set up.
  */
-function Board () {
-  this.grid = _makeGrid();
+function Board (width=8, height=8) {
+  this.grid = _makeGrid(width, height);
+  this.width = width;
+  this.height = height;
+
 }
 
 Board.DIRS = [
@@ -40,7 +43,7 @@ Board.DIRS = [
 Board.prototype.isValidPos = function (pos) {
   let [x, y] = pos;
 
-  return x >= 0 && x <= 7 && y >= 0 && y <= 7;
+  return x >= 0 && x < this.height && y >= 0 && y < this.width;
 };
 
 /**
@@ -95,8 +98,8 @@ Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
   let [x, y] = pos;
 
   while (
-    (x += dir[0]) >= 0 && x <= 7 &&
-    (y += dir[1]) >= 0 && y <= 7
+    (x += dir[0]) >= 0 && x < this.height &&
+    (y += dir[1]) >= 0 && y < this.width
   ) {
     let piece = this.getPiece([x, y]);
     
@@ -155,8 +158,8 @@ Board.prototype.placePiece = function (pos, color) {
 Board.prototype.validMoves = function (color) {
   let arr = [];
 
-  for (let i = 0; i < 8; i ++)
-    for (let j = 0; j < 8; j ++)
+  for (let i = 0; i < this.height; i ++)
+    for (let j = 0; j < this.width; j ++)
       if ( this.validMove([i, j], color) )
         arr.push([i, j]);
   
@@ -167,6 +170,7 @@ Board.prototype.validMoves = function (color) {
  * Checks if there are any valid moves for the given color.
  */
 Board.prototype.hasMove = function (color) {
+  return this.validMoves(color).length > 0
 };
 
 
@@ -176,6 +180,7 @@ Board.prototype.hasMove = function (color) {
  * the black player are out of moves.
  */
 Board.prototype.isOver = function () {
+  return !this.hasMove("white") && !this.hasMove("black")
 };
 
 
