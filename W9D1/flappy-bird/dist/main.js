@@ -10,13 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/bird.js":
+/*!*********************!*\
+  !*** ./src/bird.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Bird)\n/* harmony export */ });\nconst SCALE = 0.2;\nconst CONSTANTS = {\n  RATIO: 0.1,\n  GRAVITY:  0.5 * SCALE,\n  FLAP_SPEED:  -8 * (SCALE ** 0.5),\n  TERMINAL_VEL:  12,\n  BIRD_RADIUS:  18\n};\n\nclass Bird {\n    constructor(velocity, dimensions) {\n        this.velocity = velocity;\n        this.dimensions = dimensions\n        this.position = {x: dimensions.width / 3, y: dimensions.height / 2}\n    }\n\n    drawBird(ctx) {\n        ctx.fillStyle = \"#ffdf00\";\n        ctx.strokeStyle = \"black\";\n        ctx.beginPath();\n        ctx.arc(this.position.x, this.position.y, CONSTANTS.BIRD_RADIUS, 0, 2 * Math.PI);\n        ctx.fill();\n        ctx.stroke();\n\n        ctx.fillStyle = \"#ffffff\";\n        ctx.strokeStyle = \"black\";\n        ctx.beginPath();\n        ctx.arc(this.position.x + 8, this.position.y - 4, 8, 0, 2 * Math.PI);\n        ctx.fill();\n        ctx.stroke();\n\n        ctx.fillStyle = \"black\";\n        ctx.beginPath();\n        ctx.arc(this.position.x + 8, this.position.y - 4, 2, 0, 2 * Math.PI);\n        ctx.fill();\n        \n        ctx.fillStyle = \"#ff3f1f\";\n        ctx.strokeStyle = \"black\";\n        ctx.beginPath();\n        ctx.ellipse(this.position.x + 10, this.position.y + 10, 10, 2, 0, 0, 2 * Math.PI);\n        ctx.fill();\n        ctx.stroke();\n\n        ctx.beginPath();\n        ctx.ellipse(this.position.x + 10, this.position.y + 6, 10, 2, 0, 0, 2 * Math.PI);\n        ctx.fill();\n        ctx.stroke();\n    }\n\n    animate(ctx) {\n        this.move();\n        this.drawBird(ctx);\n    }\n\n    move(){\n        this.position.y += (this.velocity += CONSTANTS.GRAVITY);\n    }\n\n    flap(){\n        this.velocity = CONSTANTS.FLAP_SPEED;\n    }\n\n}\n\n//# sourceURL=webpack://flappy-bird/./src/bird.js?");
+
+/***/ }),
+
 /***/ "./src/game.js":
 /*!*********************!*\
   !*** ./src/game.js ***!
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ FlappyBird)\n/* harmony export */ });\n/* harmony import */ var _level__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./level */ \"./src/level.js\");\n\n\nclass FlappyBird {\n  constructor(canvas){\n    this.ctx = canvas.getContext(\"2d\");\n    this.dimensions = { width: canvas.width, height: canvas.height };\n\n  }\n\n  animate(){\n    this.level.drawBackground(this.ctx);\n  }\n\n  restart(){\n    this.level = new _level__WEBPACK_IMPORTED_MODULE_0__.default(this.dimensions);\n    this.animate();\n  }\n}\n\n//# sourceURL=webpack://flappy-bird/./src/game.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ FlappyBird)\n/* harmony export */ });\n/* harmony import */ var _level__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./level */ \"./src/level.js\");\n/* harmony import */ var _bird__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bird */ \"./src/bird.js\");\n\n\n\nclass FlappyBird {\n  constructor(canvas){\n    this.ctx = canvas.getContext(\"2d\");\n    this.dimensions = {\n      width: canvas.width,\n      height: canvas.height\n    };\n\n    canvas.addEventListener('click', (event => {\n      this.bird.flap();\n    }).bind(this));\n  }\n\n  animate(){\n    this.level.drawBackground(this.ctx);\n    this.bird.animate(this.ctx);\n\n    if (this.running){\n      requestAnimationFrame(this.animate.bind(this));\n    }\n  }\n\n  restart(){\n    this.level = new _level__WEBPACK_IMPORTED_MODULE_0__.default(this.dimensions);\n    this.bird = new _bird__WEBPACK_IMPORTED_MODULE_1__.default(1, this.dimensions)\n    this.running = true;\n\n    this.animate();\n  }\n\n  play(){\n    this.running = true;\n    this.animate();\n  }\n\n  click(){\n    if (this.running){\n      this.play();\n    }\n    this.bird.flap();\n  }\n}\n\n//# sourceURL=webpack://flappy-bird/./src/game.js?");
 
 /***/ }),
 
@@ -26,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n\n\nconst canvas = document.getElementById('bird-game');\nlet game = new _game__WEBPACK_IMPORTED_MODULE_0__.default(canvas);\n\ngame.restart();\n\n//# sourceURL=webpack://flappy-bird/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n\n\nconst canvas = document.getElementById('bird-game');\nlet game = new _game__WEBPACK_IMPORTED_MODULE_0__.default(canvas);\n\ngame.restart();\n\n\n\n//# sourceURL=webpack://flappy-bird/./src/index.js?");
 
 /***/ }),
 
