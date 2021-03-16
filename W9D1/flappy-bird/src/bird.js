@@ -12,6 +12,7 @@ export default class Bird {
         this.velocity = velocity;
         this.dimensions = dimensions
         this.position = {x: dimensions.width / 3, y: dimensions.height / 2}
+        this.radius = CONSTANTS.BIRD_RADIUS;
     }
 
     drawBird(ctx) {
@@ -58,6 +59,10 @@ export default class Bird {
 
     flap(){
         this.velocity = CONSTANTS.FLAP_SPEED;
+    }
+
+    getCenter(){
+        return this.position
     }
 
 }

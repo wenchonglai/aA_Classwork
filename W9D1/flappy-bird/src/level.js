@@ -3,7 +3,7 @@ const CONSTANTS = {
   EFFECTIVE_HEIGHT: 490,
   GAP: 150,
   APART: 220,
-
+  PIPE_WIDTH: 80
 }
 
 export default class Level {
@@ -13,19 +13,19 @@ export default class Level {
   }
 
   drawBackground(ctx) {
-    var grd = ctx.createLinearGradient(0, 0, 0, this.dimensions.height);
+    let grd = ctx.createLinearGradient(0, 0, 0, this.dimensions.height);
     grd.addColorStop(0, "#bFEFFF");
     grd.addColorStop(1, "#007fff");
 
     ctx.fillStyle = grd;
     ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
-    // this.drawPipes(ctx)
+    this.drawPipes(ctx);
   }
 
 
   movePipes() {
     this.pipes.forEach(pipe => {pipe[0] -= CONSTANTS.SPEED})
-    if (this.pipes[0][0] < 0) {
+    if (this.pipes[0][0] < -CONSTANTS.PIPE_WIDTH) {
       let pipe = this.pipes.shift();
       pipe[0] += CONSTANTS.APART * 3;
       this.pipes.push(pipe)
@@ -34,22 +34,42 @@ export default class Level {
   }
 
   drawPipes(ctx) {
-    console.log(this.pipes)
+    ctx.strokeStyle = "Black";
+
     this.pipes.forEach((pipe) => {
       this.drawPipe(ctx, pipe)
     })
   }
   
   drawPipe(ctx, [x, y]) {
-    ctx.fillStyle = "green";
-    ctx.strokeStyle = "Black";
+    let grd = ctx.createLinearGradient(x, 0, x + CONSTANTS.PIPE_WIDTH, 0);
+    grd.addColorStop(0, "#007f00");
+    grd.addColorStop(0.5, "#00ff00");
+    grd.addColorStop(1, "#007f00");
+
+    ctx.fillStyle = grd;
+    
     ctx.beginPath();
-    ctx.rect(x, 0, x + 40, y);
+    ctx.rect(x, 0, CONSTANTS.PIPE_WIDTH, y);
     ctx.stroke();
     ctx.fill();
     ctx.beginPath();
-    ctx.rect(x, y + CONSTANTS.GAP, x + 40, this.dimensions.height);
+    ctx.rect(x, y + CONSTANTS.GAP, CONSTANTS.PIPE_WIDTH, this.dimensions.height);
     ctx.stroke();
     ctx.fill();
+  }
+
+  collidesWith({position, radius}){
+    let {x, y} = position; //bird position
+
+    return this.pipes.some(([x0, y0]) => { // pipe position
+      return (
+        x >= x0 - radius &&
+        x <= x0 + radius && (
+          y <= y0 + radius ||
+          y >= y0 + CONSTANTS.GAP - radius
+        )
+      )
+    });
   }
 }

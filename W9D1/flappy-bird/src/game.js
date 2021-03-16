@@ -15,22 +15,32 @@ export default class FlappyBird {
   }
 
   animate(){
+    if (this.level.collidesWith(this.bird)){
+      alert('dead');
+      this.level.movePipes();
+      this.running = false;
+      this.restart();
+    }
+
     this.level.drawBackground(this.ctx);
     this.bird.animate(this.ctx);
-    // this.level.movePipes();
+    this.level.movePipes();
     this.level.drawPipes(this.ctx);
 
     if (this.running){
-      // requestAnimationFrame(this.animate.bind(this));
+      requestAnimationFrame(this.animate.bind(this));
     }
   }
 
   restart(){
-    this.level = new Level(this.dimensions);
-    this.bird = new Bird(1, this.dimensions)
-    this.running = true;
+    setTimeout((() => {
+      this.level = new Level(this.dimensions);
+      this.bird = new Bird(1, this.dimensions)
+      this.running = true;
 
-    this.animate();
+      this.animate();
+    }).bind(this), 1000)
+    
   }
 
   play(){
