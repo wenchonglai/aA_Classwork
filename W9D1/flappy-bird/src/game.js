@@ -17,11 +17,11 @@ export default class FlappyBird {
   animate(){
     this.level.drawBackground(this.ctx);
     this.bird.animate(this.ctx);
-    this.level.movePipes();
+    // this.level.movePipes();
     this.level.drawPipes(this.ctx);
 
     if (this.running){
-      requestAnimationFrame(this.animate.bind(this));
+      // requestAnimationFrame(this.animate.bind(this));
     }
   }
 

@@ -9,7 +9,7 @@ const CONSTANTS = {
 export default class Level {
   constructor(dimensions) {
     this.dimensions = dimensions;
-    this.pipes = [[0, Math.random() * CONSTANTS.EFFECTIVE_HEIGHT]]
+    this.pipes = [[0, Math.random() * CONSTANTS.EFFECTIVE_HEIGHT], [220, Math.random() * CONSTANTS.EFFECTIVE_HEIGHT], [440, Math.random() * CONSTANTS.EFFECTIVE_HEIGHT]]
   }
 
   drawBackground(ctx) {
@@ -25,8 +25,12 @@ export default class Level {
 
   movePipes() {
     this.pipes.forEach(pipe => {pipe[0] -= CONSTANTS.SPEED})
-    if (this.pipes[0][0] < 0) {this.pipes.shift()}
-    if (this.pipes[2][0] < this.dimensions.width - CONSTANTS.APART) {this.pipes.push([this.dimensions.width, Math.random()*CONSTANTS.EFFECTIVE_HEIGHT])}
+    if (this.pipes[0][0] < 0) {
+      let pipe = this.pipes.shift();
+      pipe[0] += CONSTANTS.APART * 3;
+      this.pipes.push(pipe)
+    }
+    // if (this.pipes[2][0] < this.dimensions.width - CONSTANTS.APART) {this.pipes.push([this.dimensions.width, Math.random()*CONSTANTS.EFFECTIVE_HEIGHT])}
   }
 
   drawPipes(ctx) {
