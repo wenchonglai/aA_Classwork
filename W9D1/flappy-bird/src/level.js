@@ -65,7 +65,7 @@ export default class Level {
     return this.pipes.some(([x0, y0]) => { // pipe position
       return (
         x >= x0 - radius &&
-        x <= x0 + radius && (
+        x <= x0 + CONSTANTS.GAP + radius && (
           y <= y0 + radius ||
           y >= y0 + CONSTANTS.GAP - radius
         )
