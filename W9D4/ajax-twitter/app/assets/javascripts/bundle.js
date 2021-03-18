@@ -1,43 +1,80 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./frontend/api_util.js":
+/*!******************************!*\
+  !*** ./frontend/api_util.js ***!
+  \******************************/
+/***/ (function(module) {
+
+const APIUtil = {
+  followUser: id => {
+    return this.ajaxUser(id, 'POST');
+  },
+
+  unfollowUser: id => {
+    return this.ajaxUser(id, 'DELETE');
+  },
+
+  ajaxUser: (id, method) => (
+    $.ajax({
+      url: `/users/${id}/follow`,
+      method,
+      dataType: 'JSON'
+    })
+  )
+};
+
+module.exports = APIUtil;
+
+/***/ }),
+
 /***/ "./frontend/follow_toggle.js":
 /*!***********************************!*\
   !*** ./frontend/follow_toggle.js ***!
   \***********************************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const APIUtil = __webpack_require__(/*! ./api_util */ "./frontend/api_util.js");
 
 class FollowToggle {
   constructor($el){
-    this.button = $('.follow-toggle');
+    this.button = $el;
     this.userId = $el.data('userId');
     this.followState = $el.data('initialFollowState');
 
+    this.handleClick();
     this.render();
   }
 
   render() {
     this.button.empty();
-    this.text( this.followState === "unfollowed" ? "Follow!" : "Unfollow!");
+    this.button.text( this.followState === false ? "Follow!" : "Unfollow!");
   }
 
   handleClick() {
-    this.button.on('click', _handleClick.bind(this) )
+    // _handleClick.bind(this)
+    this.button.on('click', (_handleClick).bind(this) )
   }
 }
 
-
-
-function _handleClick(e) {
-      e.preventDefault();
-
-      $.ajax({
-        url: `/users/${this.userId}/follow`,
-        method: ( this.followState ? 'DELETE' : 'POST' ),
-        dataType: 'JSON',
-        success: (res) => { this.button.data('initialFollowState', this.followState = !this.followState); this.render()}
-
-      })
+function _handleClick(e){
+  e.preventDefault();
+  
+  $.ajax({
+    url: `/users/${this.userId}/follow`,
+    method: ( this.followState ? 'DELETE' : 'POST' ),
+    dataType: 'JSON',
+    success: (res) => {
+      console.log(res);
+      this.followState = !this.followState;
+      this.render();
+    },
+    error: (err) => {
+      console.log(err);
+      alert(`you CANT do that!\n${err}`)
+    }
+  });
 }
 
 module.exports = FollowToggle;
@@ -64,7 +101,7 @@ module.exports = FollowToggle;
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -84,10 +121,8 @@ $(document).ready( () => {
 
   let $buttons = $('.follow-toggle');
 
-
   $buttons.each((i, button) => {
-    console.log(button, i)
-    new FollowToggle(button);
+    new FollowToggle($(button));
   });
 }
 );
