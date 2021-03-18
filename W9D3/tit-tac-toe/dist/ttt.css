@@ -1,0 +1,49 @@
+figure.ttt ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+  height: 600px;
+  list-style-type: none;
+}
+
+figure.ttt li {
+  display: block;
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+  border: 4px solid black;
+  user-select: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+figure.ttt.not-over li.hidden:hover {
+  background-color: yellow;
+}
+
+figure.ttt li.o::after {
+  content: 'o';
+}
+
+figure.ttt li.x::after {
+  content: 'x';
+}
+
+figure.ttt li::after {
+  vertical-align: middle;
+  font-weight: 700;
+  font-size: 160px;
+  width: 200px;
+  height: 200px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+figure.ttt.o li.o, figure.ttt.x li.x  {
+  color: white;
+  background-color: green;
+}
+
+figure.ttt.x li.o, figure.ttt.o li.x  {
+  color: red;
+}
+
