@@ -11,9 +11,10 @@ class UsersSearch {
     }
 
     handleInput() {
-        this.$input.on('change', (e) => {
+        this.$input.on('input', (e) => {
             APIUtil.searchUsers(this.$input.val())
             .then( (res) => {
+                console.log(res);
                 this.renderResults(res);
             })
         })
@@ -21,8 +22,8 @@ class UsersSearch {
 
     renderResults(res) {
         this.$ul.empty();
-        res.each( user => {
-            let $li = $(`<li><a> @${user.username} </a></li>`);
+        res.forEach( user => {
+            let $li = $(`<li><a href="#"> @${user.username} </a></li>`);
             this.$ul.append($li);
         })
     }

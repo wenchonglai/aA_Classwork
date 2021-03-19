@@ -11,7 +11,16 @@ const APIUtil = {
     return $.ajax({
       url: `/users/search`,
       method: 'GET',
-      data: queryVal,
+      data: { query: queryVal },
+      dataType: 'JSON'
+    })
+  },
+
+  createTweet(data){
+    return $.ajax({
+      url: '/tweets',
+      method: 'POST',
+      data: data,
       dataType: 'JSON'
     })
   }

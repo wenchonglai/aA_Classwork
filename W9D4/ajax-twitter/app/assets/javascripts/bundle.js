@@ -20,7 +20,16 @@ const APIUtil = {
     return $.ajax({
       url: `/users/search`,
       method: 'GET',
-      data: queryVal,
+      data: { query: queryVal },
+      dataType: 'JSON'
+    })
+  },
+
+  createTweet(data){
+    return $.ajax({
+      url: '/tweets',
+      method: 'POST',
+      data: data,
       dataType: 'JSON'
     })
   }
@@ -87,6 +96,70 @@ module.exports = FollowToggle;
 
 /***/ }),
 
+/***/ "./frontend/tweet_compose.js":
+/*!***********************************!*\
+  !*** ./frontend/tweet_compose.js ***!
+  \***********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const APIUtil = __webpack_require__(/*! ./api_util */ "./frontend/api_util.js");
+
+class TweetCompose{
+  constructor($el){
+    this.$el = $el;
+    this.$el.data('tweetsUl', '#feed');
+    this.$el.on('submit', e => {
+      e.preventDefault();
+      
+      this
+        .submit()
+        .then(res => {
+          console.log(res)
+          this.handleSuccess();
+          console.log($(this.$el.data('tweetsUl')));
+          $(this.$el.data('tweetsUl'))
+            .prepend($(`<li>${res.content} -- <a href="/users/${res.user_id}">${res.user.username}</a> -- ${res.created_at}</li>`))
+        });
+    });
+
+    let $textArea = this.$el.find('textarea');
+    $textArea.on('input', e => {
+      let val = $textArea.val()
+
+      if (val.length > 140){
+        $textArea.val(val.substr(0, 140));
+      }
+
+      let newLength = 140 - $textArea.val().length;
+
+      $('.chars-left').text( newLength );
+      
+    });
+
+  }
+
+  submit(){
+    let data = this.$el.serialize();
+
+    this.$el.find(':input').prop('disabled', true);
+
+    return APIUtil.createTweet(data);
+  }
+
+  clearInput(){
+    this.$el.find(':input[type="text"]').val('');
+  }
+
+  handleSuccess(){
+    this.clearInput();
+    this.$el.find(':input').prop('disabled', false);
+  }
+}
+
+module.exports = TweetCompose;
+
+/***/ }),
+
 /***/ "./frontend/users_search.js":
 /*!**********************************!*\
   !*** ./frontend/users_search.js ***!
@@ -106,9 +179,10 @@ class UsersSearch {
     }
 
     handleInput() {
-        this.$input.on('change', (e) => {
+        this.$input.on('input', (e) => {
             APIUtil.searchUsers(this.$input.val())
             .then( (res) => {
+                console.log(res);
                 this.renderResults(res);
             })
         })
@@ -116,8 +190,8 @@ class UsersSearch {
 
     renderResults(res) {
         this.$ul.empty();
-        res.each( user => {
-            let $li = $(`<li><a> @${user.username} </a></li>`);
+        res.forEach( user => {
+            let $li = $(`<li><a href="#"> @${user.username} </a></li>`);
             this.$ul.append($li);
         })
     }
@@ -162,6 +236,7 @@ var __webpack_exports__ = {};
   \*****************************/
 const FollowToggle = __webpack_require__(/*! ./follow_toggle */ "./frontend/follow_toggle.js");
 const UsersSearch = __webpack_require__(/*! ./users_search */ "./frontend/users_search.js");
+const TweetCompose = __webpack_require__(/*! ./tweet_compose */ "./frontend/tweet_compose.js");
 
 
 $(document).ready( () => {
@@ -176,6 +251,7 @@ $(document).ready( () => {
     new UsersSearch($(nav));
   })
   
+  new TweetCompose( $('.tweet-compose') );
 });
 
 })();
