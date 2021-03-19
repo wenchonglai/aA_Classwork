@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Clock\": () => (/* binding */ Clock)\n/* harmony export */ });\n/* harmony import */ var _warmup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./warmup */ \"./src/warmup.js\");\n\n\nclass Clock{\n  get time(){\n    return new Date().toTimeString().substr(0,8);\n  }\n}\n\nconst clock = new Clock();\n\nlet div = document.getElementById('clock');\n\nsetInterval(() => {\n  // Array.from(div.children).forEach( (child) => {\n  //   div.removeChild(child);\n  // })\n  \n  // div.innerHTML = \"\";\n  // htmlGenerator(clock.time, div);\n  div.innerText = clock.time;\n}, 1000);\n\n\n//# sourceURL=webpack:///./src/clock.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Clock\": () => (/* binding */ Clock)\n/* harmony export */ });\n/* harmony import */ var _warmup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./warmup */ \"./src/warmup.js\");\n\n\nclass Clock{\n  get time(){\n    return new Date().toTimeString().substr(0,8);\n  }\n}\n\nconst clock = new Clock();\n\nlet div = document.getElementById('clock');\n\n// setInterval(() => {\n//   // Array.from(div.children).forEach( (child) => {\n//   //   div.removeChild(child);\n//   // })\n  \n//   div.innerHTML = \"\";\n//   htmlGenerator(clock.time, div);\n  \n// }, 1000);\n\n(function animateClock(){\n  div.innerText = clock.time;\n  requestAnimationFrame(animateClock);\n})();\n\n//# sourceURL=webpack:///./src/clock.js?");
 
 /***/ }),
 
@@ -36,7 +36,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _warmup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./warmup */ \"./src/warmup.js\");\n/* harmony import */ var _clock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./clock */ \"./src/clock.js\");\n/* harmony import */ var _drop_down__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./drop_down */ \"./src/drop_down.js\");\n\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _warmup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./warmup */ \"./src/warmup.js\");\n/* harmony import */ var _clock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./clock */ \"./src/clock.js\");\n/* harmony import */ var _drop_down__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./drop_down */ \"./src/drop_down.js\");\n/* harmony import */ var _todo_list__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todo_list */ \"./src/todo_list.js\");\n\n\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/todo_list.js":
+/*!**************************!*\
+  !*** ./src/todo_list.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ addTodo)\n/* harmony export */ });\nconst TODOS = JSON.parse(localStorage.getItem('todos')) || [];\nconst ul = document.querySelector('ul.todos');\n\nlet counter = (function(){\n  let count = 0;\n\n  return () => (count++);\n})();\n\nfunction addTodo(){\n  // let button = document.querySelector('input[value=\"+ Add Todo\"]');\n  let form = document.querySelector('form.add-todo-form');\n\n  form.addEventListener('submit', (e) => {\n    e.preventDefault();\n\n    let input = document.querySelector('input[name=\"add-todo\"]');\n    let todo = [input.value, false];\n\n    input.value = '';\n\n    TODOS.push(todo);\n    localStorage.setItem('todos', JSON.stringify(TODOS));\n    populateList(todo, TODOS.length - 1);\n  });\n};\n\nfunction populateList([item, checked], i){\n  let li = document.createElement('li');\n  let label = document.createElement('label');\n  let checkbox = document.createElement('input');\n  checkbox.setAttribute('data-index', i);\n  checkbox.setAttribute('type', 'checkbox');\n\n  if (checked){\n    checkbox.checked = true;\n  }\n\n  label.appendChild(checkbox);\n  label.append(item);\n  li.appendChild(label);\n  ul.appendChild(li);\n}\n\nTODOS.forEach((todo, i) => {\n  populateList(todo, i);\n});\n\nconst checkHandler = e => {\n  let index = e.target.getAttribute('data-index');\n  \n  if (index === null){ return; }\n\n  TODOS[index][1] = !TODOS[index][1];\n  localStorage.setItem('todos', JSON.stringify(TODOS));\n};\n\nul.addEventListener('click', checkHandler);\n\naddTodo();\n\n\n\n\n//# sourceURL=webpack:///./src/todo_list.js?");
 
 /***/ }),
 
