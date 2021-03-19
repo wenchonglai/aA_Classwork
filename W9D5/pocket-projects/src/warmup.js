@@ -1,8 +1,17 @@
 
 const partyHeader = document.getElementById('party');
 
-export const htmlGenerator = (string, htmlElement) => {
+const htmlGenerator = (string, htmlElement) => {
+  let p = document.createElement('p');
 
+  p.innerText = string;
+
+  htmlElement.appendChild(p);
 };
 
-htmlGenerator('Party Time.', partyHeader);
+htmlGenerator(
+  'I <3 Vanilla DOM manipulation.',
+  document.getElementById('party')
+);
+
+export default htmlGenerator;
