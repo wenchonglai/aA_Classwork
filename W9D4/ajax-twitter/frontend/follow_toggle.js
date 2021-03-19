@@ -12,6 +12,7 @@ class FollowToggle {
 
   render() {
     this.button.empty();
+    this.button.prop('disabled', false);
     this.button.text( this.followState === false ? "Follow!" : "Unfollow!");
   }
 
@@ -23,21 +24,17 @@ class FollowToggle {
 
 function _handleClick(e){
   e.preventDefault();
-  
-  $.ajax({
-    url: `/users/${this.userId}/follow`,
-    method: ( this.followState ? 'DELETE' : 'POST' ),
-    dataType: 'JSON',
-    success: (res) => {
-      console.log(res);
+  this.button.prop('disabled', true);
+
+  (this.followState ?  APIUtil.unfollowUser(this.userId) : APIUtil.followUser(this.userId))
+  .then((res) => {
       this.followState = !this.followState;
       this.render();
-    },
-    error: (err) => {
+    })
+  .fail((err) => {
       console.log(err);
       alert(`you CANT do that!\n${err}`)
-    }
-  });
+    })
 }
 
 module.exports = FollowToggle;
