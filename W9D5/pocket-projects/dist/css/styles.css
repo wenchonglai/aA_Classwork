@@ -77,6 +77,14 @@ header {
   justify-content: space-between;
 }
 
+div.todo-container > *{
+  margin: 20px 0;
+}
+
+div.todo-container li {
+  margin: 20px 0;
+}
+
 /*  Phase 4: Slide In & Out Classes */
 
 .align-left {
@@ -105,4 +113,11 @@ header {
 .slide.active {
   opacity: 1;
   transform: translateX(0%) scale(1);
+}
+
+div.slide-and-scroll {
+  width: 900px;
+  margin: auto;
+  text-align: left;
+  margin-top: 40px;
 }

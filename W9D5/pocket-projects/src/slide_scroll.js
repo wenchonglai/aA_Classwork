@@ -1,4 +1,4 @@
-function debounce(func, wait = 20, immediate = true) {
+export default function debounce(func, wait = 20, immediate = true) {
   let timeout;
 
   // This is the function that is actually executed when
@@ -32,3 +32,17 @@ function debounce(func, wait = 20, immediate = true) {
     if (callNow) func.apply(context, args);
   };
 }
+
+let images = document.querySelectorAll("img");
+
+window.addEventListener("scroll", debounce((e) => {
+  images.forEach( (img) => {
+
+    if ((img.offsetTop + img.height / 2 < (window.innerHeight + window.scrollY)) 
+      && (img.offsetTop + img.height) > window.scrollY ) {
+      img.classList.add("active");
+    } else {
+      img.classList.remove("active");
+    }
+  })
+}))
