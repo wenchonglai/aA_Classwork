@@ -11,5 +11,11 @@ const clock = new Clock();
 let div = document.getElementById('clock');
 
 setInterval(() => {
-  htmlGenerator(clock.time, div);
+  // Array.from(div.children).forEach( (child) => {
+  //   div.removeChild(child);
+  // })
+  
+  // div.innerHTML = "";
+  // htmlGenerator(clock.time, div);
+  div.innerText = clock.time;
 }, 1000);
