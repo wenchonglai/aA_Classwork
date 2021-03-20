@@ -34,9 +34,7 @@ export default function debounce(func, wait = 20, immediate = true) {
 }
 
 let images = document.querySelectorAll("img");
-
-window.addEventListener("scroll", debounce((e) => {
-  images.forEach( (img) => {
+let callback = () => {images.forEach( (img) => {
 
     if ((img.offsetTop + img.height / 2 < (window.innerHeight + window.scrollY)) 
       && (img.offsetTop + img.height) > window.scrollY ) {
@@ -44,5 +42,11 @@ window.addEventListener("scroll", debounce((e) => {
     } else {
       img.classList.remove("active");
     }
-  })
-}))
+  });}
+
+let animationFrame = null;
+
+window.addEventListener("scroll", e => {
+  window.cancelAnimationFrame(animationFrame);
+  animationFrame = window.requestAnimationFrame(callback);
+})
