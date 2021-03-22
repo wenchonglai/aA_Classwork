@@ -30,7 +30,7 @@ export default class DOMNodeCollection {
   }
 
   removeClass(name){
-    this.each(el => {el.classList.remove(name); });
+    this.each(el => { el.classList.remove(name); });
     return this;
   }
 
@@ -52,7 +52,25 @@ export default class DOMNodeCollection {
   }
 
   remove(){
-    this.each(el => {el.innerHTML = ''; })
+    let children = this.children;
+
+    if (children){
+      children.each(child => child.remove());
+    }
+
+    this.each(el => {
+      if (el.listeners){
+        Object.keys(el.listeners).forEach(key => {
+          for (let listener of el.listeners[key]){
+            el.removeEventListener(listener);
+          }
+        });
+
+        delete el.listeners[key];
+      }
+
+      el.innerHTML = ''; 
+    })
   }
 
   html(str){
@@ -65,4 +83,33 @@ export default class DOMNodeCollection {
   }
 
   // Phase 2
+  on(type, listener){
+    this.each(el => {
+      let listeners = el.listeners;
+
+      if ( !listeners ) el.listeners = ( listeners = {});
+
+      let set = listeners[type];
+
+      if ( !set ) listeners[type] = ( set = new Set());
+
+      set.add(listener);
+      el.addEventListener(type, listener);
+    });
+  }
+
+  off(type, listener){
+    this.each(el => {
+      let listeners = el.listeners
+      let set = listeners[type];
+
+      (listener ? [listener] : set).forEach( listener => {
+        set.delete(listener);
+        el.removeEventListener(type, listener);
+      });
+    });
+  }
+
+  // Phase 3
+  
 }
