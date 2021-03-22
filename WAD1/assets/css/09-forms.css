@@ -1,0 +1,75 @@
+/* PHASE 3: Forms */
+.content-main .user-related {
+  display: flex;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.content-main .user-related  > a.thumb {
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+}
+
+.content-main fieldset{
+  background: #eee;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 20px;
+}
+.content-main .user-related .user-content{
+  position: relative;
+  display: block;
+  width: calc(100% - 80px);
+  box-sizing: border-box;
+}
+
+.content-main fieldset label {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.content-main fieldset > label > div {
+  font-weight: 700;
+  padding: 4px 2px;
+}
+
+
+.content-main fieldset input, .content-main fieldset textarea{
+  width: 100%;
+  background: white;
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+}
+
+.content-main fieldset input:focus, .content-main fieldset textarea:focus{
+  border-color: #0c0;
+}
+
+div.submit{
+  font-weight: 400;
+}
+
+div.submit input{
+  display: inline-block;
+  width: auto;
+  background-color: #0c0;
+  color: #fff;
+  box-shadow: 0 3px 0 #070;
+  border: none;
+}
+
+div.submit input:hover{
+  background-color: #0b0;
+}
+
+div.submit  > span{
+  font-weight: 700;
+  cursor: pointer;
+}
+
+div.submit  > span:hover{
+  color: #c00;
+}

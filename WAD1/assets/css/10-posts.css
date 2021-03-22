@@ -1,0 +1,35 @@
+/* PHASE 4: Posts */
+.user-related .status{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* PHASE 4: Posts */
+.user-related .status > div > ul{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.user-related .status-left ul li{
+  color: #777;
+  font-size: 14px;
+}
+
+.user-related .status-left ul li::after{
+  content: " · ";
+  padding: 0 4px;
+}
+
+.user-related .status-left ul li:last-child:after{
+  content: "";
+}
+
+.user-related .status-right ul li{
+  margin-left: 10px;
+}
+
+section.user-related {
+  border-top: 1px solid #bbb;
+  padding-top: 20px;
+}
