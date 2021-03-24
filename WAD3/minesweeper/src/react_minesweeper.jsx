@@ -8,11 +8,7 @@ export default class ReactGamesweeper extends React.Component{
   render(){
     return (
     <React.Fragment>
-
-      
-        <Game></Game>
-
-      
+      <Game></Game>
     </React.Fragment>
     )
   }

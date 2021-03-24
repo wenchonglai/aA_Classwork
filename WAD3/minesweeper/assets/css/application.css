@@ -1,0 +1,113 @@
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  margin: auto;
+}
+
+.react-game{
+  text-align: center;
+  margin: auto;
+}
+
+.board {
+  background-image: url('../img/golf.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.tile {
+  display: inline-block;
+  background-color: rgba(171, 214, 71, 0.5);
+  user-select: none;
+  text-align: center;
+  position: relative;
+}
+
+.tile:hover {
+  background-color: rgba(134, 173, 42, 0.5);
+}
+
+.tile p {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  transform: translate(-50%, -50%);
+}
+
+.tile.explored p{
+  display: block;
+}
+
+.tile::before{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  content: '🌳';
+  cursor: pointer;
+}
+
+.tile.explored.bombed::before{
+  content: '💣';
+}
+
+.tile.explored::before{
+  content: '🫓';
+}
+
+.tile.flagged::before{
+  content: '⛳️';
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal {
+  text-align: center;
+}
+.modal span{
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.modal span:hover{
+  color: red;
+}
+
+.modal-screen {
+  position: fixed;
+  background-color: #0000007f;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.modal-window {
+  box-shadow: 0 0 2px 1px #0000003f;
+  background-color: #dfdfdf9f;
+  width: 150px;
+  height: 100px;
+  backdrop-filter: blur(3px);
+  padding: 20px;
+  border-radius: 4px;
+  text-align: center;
+  margin: auto;
+}

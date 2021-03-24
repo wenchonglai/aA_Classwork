@@ -61,7 +61,7 @@ Tile.DELTAS = [[-1, -1], [-1,  0], [-1,  1], [ 0, -1],
              [ 0,  1], [ 1, -1], [ 1,  0], [ 1,  1]];
 
 export class Board {
-  constructor(gridSize, numBombs) {
+  constructor(gridSize, numBombs = 10) {
     this.gridSize = gridSize;
     this.grid = [];
     this.numBombs = numBombs;
@@ -109,6 +109,7 @@ export class Board {
         }
       });
     });
+
     return lost;
   }
 
