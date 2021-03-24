@@ -1,0 +1,85 @@
+* {
+  font-family: 'DotGothic16', sans-serif;
+  box-sizing: border-box;
+}
+
+#root {
+  max-width: 320px;
+  position: relative;
+}
+
+.clock-body, .weather-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 3px 0 #0000001f;
+  padding: 10px;
+}
+
+.clock-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabs-header{
+  display: flex;
+
+}
+
+.tabs .tab{
+  background-color: #f7f7f7;
+  user-select: none;
+  cursor: pointer;
+  padding: 4px 10px;
+  border: 1px solid #ddd;
+  border-right: none;
+} 
+
+.tabs .tab:first-child{
+  border-radius: 8px 0 0 0;
+}
+
+.tabs .tab:last-child{
+  border-right: 1px solid #ddd;
+  border-radius: 0 8px 0 0;
+}
+
+.tabs .tab.selected{
+  background-color: greenyellow;
+  border-bottom: none;
+} 
+
+.tabs .tab:hover{
+  background-color: green;
+} 
+
+.tabs-body{
+  z-index: -1;
+  position: relative;
+  width: 100%;
+  transform: translateY(-1px);
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 3px 0 #0000001f;
+  padding: 10px;
+  border-radius: 0 0 8px 8px;
+}
+
+.temp::after{
+  content: '˚'
+}
+
+.weather-container{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  background-image: linear-gradient(#1c8aba, #66a9cb);
+  color: white;
+}
+
+.weather-container > div {
+  display: inline-block;
+}
