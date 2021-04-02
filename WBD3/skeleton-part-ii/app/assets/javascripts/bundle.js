@@ -226,6 +226,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -259,29 +265,43 @@ var PokemonDetail = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, PokemonDetail);
 
     _this = _super.call(this, props);
-    _this.state = {};
+    _this.state = {
+      id: undefined
+    };
     return _this;
   }
 
   _createClass(PokemonDetail, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.requestPokomon(this.props.match.params.id);
+      this.props.requestPokemon(this.props.match.params.id); //this.setState({id: this.props.match.params.id});
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      this.props.requestPokomon(this.props.match.params.id);
+    value: function componentDidUpdate(props) {
+      if (props.match.params.id != this.props.match.params.id) {
+        this.props.requestPokemon(this.props.match.params.id); //this.setState({id: this.props.match.params.id});
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      var poke = this.props.poke;
+      var _this$props = this.props,
+          poke = _this$props.poke,
+          moves = _this$props.moves,
+          items = _this$props.items;
+
+      var obj = _objectSpread(_objectSpread({}, poke), {}, {
+        movenames: moves.join(","),
+        items: items
+      });
+
+      console.log(obj);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pokemon-detail"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "pokemon-detail"
-      }, poke ? Object.keys(poke).map(function (key, i) {
+      }, poke ? Object.keys(poke).concat(Object.keys(moves)).map(function (key, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: i
         }, key === 'imageUrl' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -310,19 +330,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _pokemon_detail__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pokemon_detail */ "./frontend/components/pokemon/pokemon_detail.jsx");
 /* harmony import */ var _actions_pokemon_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/pokemon_actions */ "./frontend/actions/pokemon_actions.js");
+/* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
+
 
 
 
 
 var MapStateToProps = function MapStateToProps(state, ownProps) {
   return {
-    poke: state.entities.pokemon[ownProps.match.params.id]
+    poke: Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectAllPokemon"])(state),
+    items: Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectPokemonItems"])(state),
+    moves: Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectPokemonMovesNames"])(state)
   };
 };
 
 var MapDispatchToProps = function MapDispatchToProps(dispatch) {
   return {
-    requestPokomon: function requestPokomon(id) {
+    requestPokemon: function requestPokemon(id) {
       return dispatch(Object(_actions_pokemon_actions__WEBPACK_IMPORTED_MODULE_2__["requestPokemon"])(id));
     }
   };
@@ -730,14 +754,24 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 /*!****************************************!*\
   !*** ./frontend/reducers/selectors.js ***!
   \****************************************/
-/*! exports provided: selectAllPokemon */
+/*! exports provided: selectAllPokemon, selectPokemonMovesNames, selectPokemonItems */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectAllPokemon", function() { return selectAllPokemon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectPokemonMovesNames", function() { return selectPokemonMovesNames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectPokemonItems", function() { return selectPokemonItems; });
 var selectAllPokemon = function selectAllPokemon(state) {
   return Object.values(state.entities.pokemon);
+};
+var selectPokemonMovesNames = function selectPokemonMovesNames(state) {
+  return Object.values(state.entities.moves).map(function (move) {
+    return move.name;
+  });
+};
+var selectPokemonItems = function selectPokemonItems(state) {
+  return Object.values(state.entities.items);
 };
 
 /***/ }),
