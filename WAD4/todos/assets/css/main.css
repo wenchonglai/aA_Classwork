@@ -1,0 +1,16 @@
+.hidden {
+  display: none;
+}
+
+section.todo-list h4 {
+  user-select: none;
+  cursor: pointer;
+}
+
+button.status::after {
+  content: "Done";
+}
+
+button.status.done::after {
+  content: "Undo";
+}
